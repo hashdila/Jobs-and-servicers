@@ -26,23 +26,10 @@ if (isset($_GET['job_id'])) {
     exit('Job ID not provided.');
 }
 
-
-
-
-
-
-
-
-
 $sql = "SELECT * FROM cus_posts WHERE job_id = ?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$job_id]);
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -112,46 +99,8 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 </div>
             </div>
-      
-
-    <div class="container mt-4">
-    <h3>Comments</h3>
-    <?php
-    // Fetch comments for the post from your database
-    $commentsSql = "SELECT * FROM post_comments WHERE job_id = ?";
-    $commentsStmt = $pdo->prepare($commentsSql);
-    $commentsStmt->execute([$job_id]);
-    $comments = $commentsStmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if (count($comments) > 0) {
-        foreach ($comments as $comment) {
-            echo '<div class="card mb-2">';
-            echo '<div class="card-body">';
-            echo '<p class="card-text">' . htmlspecialchars($comment['comment_text']) . '</p>';
-            echo '</div>';
-            echo '</div>';
-        }
-    } else {
-        echo '<p>No comments yet.</p>';
-    }
-    ?>
-
-    <!-- Add Comment Form -->
-    <h4>Add a Comment</h4>
-    <form action="add_comment.php" method="post">
-        <input type="hidden" name="job_id" value="<?php echo $job_id; ?>">
-        <div class="form-group">
-            <label for="commentText">Comment:</label>
-            <textarea class="form-control" id="commentText" name="comment_text" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit Comment</button>
-    </form>
-</div>
-
-
-</div>
     </div>
-
 </div>
 
 

@@ -55,7 +55,7 @@ $jobs = $stmt->fetchAll();
                         Name: <?php echo $job['name']; ?><br>
                         Area: <?php echo $job['location']; ?><br>                       
                         Address: <?php echo $job['address']; ?><br>
-                        Searching: <?php echo $job['need_t']; ?><br>
+                        Searching: <?php echo $job['need_t']; ?>; ?><br>
                         Phone Number: <?php echo $job['phone_number']; ?>
                     </p>
                     <!-- Message Button -->

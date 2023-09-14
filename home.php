@@ -40,7 +40,7 @@
 <nav class="container navbar navbar-expand-lg navbar-light bg-tranceperent fixed-top">
     <div class="container-fluid">
         <!-- Logo Section -->
-        <a class="navbar-brand d-flex align-items-center" href="#">
+        <a class="navbar-brand d-flex align-items-center" href="admin/ad_home.php">
             <img src="application/logo.png" alt="Your Logo" width="65" height="65" class="d-inline-block align-top">
             <span class="ms-3" style="font-size: 1.5rem;">Jobs and servisers</span>
         </a>
