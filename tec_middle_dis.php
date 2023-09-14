@@ -14,7 +14,7 @@ $opt = [
 
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
-$sql = "SELECT * FROM tec_posts";
+$sql = "SELECT * FROM cus_posts";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $jobs = $stmt->fetchAll();
@@ -54,8 +54,8 @@ $jobs = $stmt->fetchAll();
                     <p class="card-text">
                         Name: <?php echo $job['name']; ?><br>
                         Area: <?php echo $job['location']; ?><br>                       
-                        Address: <?php echo $job['physical_address']; ?><br>
-                        Searching: <?php echo $job['job_category']; ?>; ?><br>
+                        Address: <?php echo $job['address']; ?><br>
+                        Searching: <?php echo $job['need_t']; ?><br>
                         Phone Number: <?php echo $job['phone_number']; ?>
                     </p>
                     <!-- Message Button -->

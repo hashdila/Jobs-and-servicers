@@ -26,7 +26,7 @@ if (isset($_GET['job_id'])) {
     exit('Job ID not provided.');
 }
 
-$sql = "SELECT * FROM tec_posts WHERE job_id = ?";
+$sql = "SELECT * FROM cus_posts WHERE job_id = ?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$job_id]);
 $post = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -82,13 +82,14 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
                 <div class="card-body">
                     <h4 class="card-title"><?php echo htmlspecialchars($post['name']); ?></h4>
                     <p class="card-text">
+                        <strong>Type:</strong> <?php echo $post['need_t']; ?><br>
                         <strong>Age:</strong> <?php echo $post['age']; ?><br>
-                        <strong>Address:</strong> <?php echo htmlspecialchars($post['physical_address']); ?><br>
+                        <strong>Address:</strong> <?php echo htmlspecialchars($post['address']); ?><br>
                         <strong>Description:</strong> <?php echo htmlspecialchars($post['work_description']); ?><br>
-                        <strong>Location:</strong> <?php echo htmlspecialchars($post['location']); ?><br>
+                        <strong>Area:</strong> <?php echo htmlspecialchars($post['location']); ?><br>
                         <strong>Phone:</strong> <?php echo $post['phone_number']; ?><br>
                         <strong>Lat/Lng:</strong> <?php echo $post['lat'] . '/' . $post['lng']; ?><br>
-                        <strong>Map Address:</strong> <?php echo htmlspecialchars($post['map_address']); ?>
+                        
                     </p>
                     <!-- Accept Post Button -->
                     <form action="qr1.php" method="get">
