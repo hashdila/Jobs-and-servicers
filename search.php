@@ -14,15 +14,24 @@ $opt = [
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
 $job_category = isset($_GET['job_category']) ? $_GET['job_category'] : null;
+$location = isset($_GET['location']) ? $_GET['location'] : null;
 
-if ($job_category) {
-    $stmt = $pdo->prepare("SELECT * FROM tec_posts WHERE job_category = ?");
-    $stmt->execute([$job_category]);
-    $results = $stmt->fetchAll();
-    header('Content-Type: application/json');
-    echo json_encode($results);
-    exit;  // Important: Stop further execution
+if ($job_category && $location) {
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM tec_posts WHERE job_category = ? AND location = ?");
+        $stmt->execute([$job_category, $location]);
+
+        $results = $stmt->fetchAll();
+        header('Content-Type: application/json');
+        echo json_encode($results);
+        exit;
+    } catch (PDOException $e) {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => $e->getMessage()]);
+        exit;
+    }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,21 +100,41 @@ function updateDropdown2(value) {
     document.getElementById("dropdownMenuButton2").innerText = value;
 }
 
+
 function searchData() {
     const job_category = document.getElementById("dropdownMenuButton1").innerText.trim();
+    const location = document.getElementById("dropdownMenuButton2").innerText.trim();
+
     if (job_category === 'TECNITIONS') {
         alert('Please select a job category before searching.');
         return;
     }
-    window.location.href = `results.php?job_category=${job_category}`;
 
-    fetch(`?job_category=${job_category}`)
+    if (location === 'AREA') {
+    alert('Please select a location before searching.');
+    return;
+    }
+
+
+    // Update the window location to include the area
+    window.location.href = `results.php?job_category=${job_category}&location=${location}`;
+
+    fetch(`?job_category=${job_category}&location=${location}`)
         .then(response => response.json())
         .then(data => {
             const resultBox = document.getElementById("resultBox");
             resultBox.innerHTML = "";  // Clear previous results
 
+            if(data.length === 0) {
+                resultBox.innerHTML = "<p>No results found for the given criteria.</p>";
+                return;
+            }
+
+            // ... the rest of your code remains unchanged
+
+
             data.forEach((item, index) => {
+                
     resultBox.innerHTML += `
     <div class="col-md-2 mb-1 d-flex justify-content-center align-items-center"> 
             <div class="card shadow-sm">
@@ -196,14 +225,14 @@ function searchData() {
         <!-- Second Dropdown -->
         <div class="col-12 col-md mt-3 mt-md-0">
             <div class="dropdown w-100">
-            <button class="btn bg-transparent text-dark btn-secondary dropdown-toggle border-0 w-100  fs-4 " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">                    
+            <button class="btn bg-transparent text-dark btn-secondary dropdown-toggle border-0 w-100  fs-4 " type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">                    
                
                 AREA  
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Kandy')">Option A</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Option B')">Option B</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Option C')">Option C</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Kandy')">Kandy</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Peradeniya ')">Peradeniya</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Theldeniya')">Theldeniya</a></li>
                     
                 </ul>
             </div>

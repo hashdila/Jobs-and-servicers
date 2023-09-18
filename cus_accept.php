@@ -105,10 +105,13 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
                         
                     </p>
                     <!-- Accept Post Button -->
-                    <form action="qr1.php" method="get">
+                    <!-- <form action="cus_qr.php" method="get">
                         <input type="hidden" name="job_id"  value="<?php echo $job['job_id']; ?>">
                         <input type="submit" class="btn btn-success"value=" comform">
-                        </form>
+                        </form> -->
+
+                        <a href="cus_pdf.php?job_id=<?php echo $job_id; ?>" class="btn btn-success">Accept</a>
+
 
                 </div>
             </div>
@@ -127,9 +130,15 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
         foreach ($comments as $comment) {
             echo '<div class="card mb-2">';
             echo '<div class="card-body">';
-            echo '<p class="card-text">' . htmlspecialchars($comment['comment_text']) . '</p>';
+            echo '<p class="card-text">';
+            echo htmlspecialchars($comment['comment_text']) . '<br>';
+            echo '<small>Posted on: ' . htmlspecialchars($comment['created_at']) . '</small> ';
+            echo '<a href="delet_coment.php?comment_id=' . $comment['comment_id'] . '&job_id=' . $comment['job_id'] . '">🗑️</a>';
+            echo '</p>';
+
             echo '</div>';
             echo '</div>';
+            
         }
     } else {
         echo '<p>No comments yet.</p>';
@@ -146,6 +155,7 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
         </div>
         <button type="submit" class="btn btn-primary">Submit Comment</button>
     </form>
+    
 </div>
 
 

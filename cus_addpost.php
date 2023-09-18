@@ -200,9 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 </div>
 
-                <!-- Map Section -->
-                
-                <!-- End of Map Section -->
+               
 
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-success btn-lg rounded-pill"><strong>Post Job</strong></button>
@@ -218,6 +216,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     var map;
     var geocoder;
     var marker;
+
+    function getCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        window.alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    marker.setPosition(latlng);
+    map.setCenter(latlng);
+    geocodeLatLng(geocoder, latlng);
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            window.alert("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            window.alert("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            window.alert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            window.alert("An unknown error occurred.");
+            break;
+    }
+}
+
+
+
+
+
+
 
     function initMap() {
         var myLatLng = {lat: 7.2844, lng: 80.6332};
@@ -238,6 +274,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
 
         geocoder = new google.maps.Geocoder;
+
+        getCurrentLocation();
     }
 
     function geocodeLatLng(geocoder, latlng) {
