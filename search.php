@@ -87,6 +87,14 @@ if ($job_category && $location) {
         object-fit: cover;
         opacity: 0.7; /* adjust this value if you want to change the transparency */
         }
+/* Add this to your existing styles */
+@media only screen and (max-width: 768px) {
+    .search-container {
+        background-color: transparent; /* white with 50% opacity */
+        /* Alternatively, use opacity if you want everything (including text and children elements) to be slightly transparent */
+        /* opacity: 0.5; */
+    }
+}
 
 
     </style>
@@ -203,8 +211,9 @@ function searchData() {
         <br>
     </div>
 
-    <div class="search-container p-4 d-flex flex-column flex-md-row justify-content-between align-items-center bg-white shadow-lg">
+    <div class="search-container p-4 d-flex flex-column flex-md-row justify-content-between align-items-center bg-transparent shadow-lg">
        <!-- First Dropdown -->
+    
         <div class="col-12 col-md">
             <div class="dropdown w-100%">
             <button class="btn bg-transparent text-dark btn-secondary dropdown-toggle border-0 w-100  fs-4 " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">                    
@@ -246,6 +255,7 @@ function searchData() {
         </div>
 
     </div>
+    
 
 
     

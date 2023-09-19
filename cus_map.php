@@ -8,6 +8,12 @@
             height: 400px;
             width: 100%;
         }
+        #currentLocationIcon {
+        font-size: 24px;
+        height: 24px;
+        width: 24px;
+        text-align: center;
+}
     </style>
 </head>
 <body>
@@ -35,6 +41,8 @@ $locations = $stmt->fetchAll();
 <div class="boder shadow-lg p-3 border">
     
     <div id="map" ></div>
+             
+    
     </div>
 
 <script>
@@ -69,8 +77,68 @@ $locations = $stmt->fetchAll();
                 }
             })(marker, i));
         }
+
+        // ... [Rest of the code]
+
+        // ... [Rest of the code]
+
+        var circle;
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var currentLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
+
+        // Emoji as a marker for the current location
+        var currentLocationMarker = new google.maps.Marker({
+            position: currentLocation,
+            label: {
+                text: '🚶‍♂️',
+                fontSize: '24px',
+                fontWeight: 'bold'
+            },
+            animation: google.maps.Animation.BOUNCE,  // Use BOUNCE or DROP animation
+            map: map
+        });
+
+        google.maps.event.addListener(currentLocationMarker, 'click', function() {
+            infowindow.setContent('You are here!');
+            infowindow.open(map, currentLocationMarker);
+        });
+
+        // Drawing a blue circle of 10km radius around the current location
+        circle = new google.maps.Circle({
+            map: map,
+            radius: 10000,    // 10 km in meters by default
+            fillColor: '#0099FF',
+            fillOpacity: 0.3,
+            strokeColor: '#0099FF',
+            strokeOpacity: 0.5,
+            center: currentLocation
+        });
+
+
+    }, function() {
+        console.log('Error obtaining current location');
+    });
+} else {
+    console.log('Your browser does not support geolocation');
+}
+
+document.getElementById('radiusSlider').addEventListener('input', function(e) {
+    var newRadius = parseInt(e.target.value, 10);
+    document.getElementById('radiusValue').textContent = newRadius;
+    if (circle) {
+        circle.setRadius(newRadius);
+    }
+});
+
+
     }
 </script>
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz6hD1YTyC3OSA2XoY4xnFulMVkOx2bDE&callback=initMap">
 </script>
 </body>

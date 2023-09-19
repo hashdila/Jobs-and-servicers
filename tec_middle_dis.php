@@ -14,9 +14,29 @@ $opt = [
 
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
-$sql = "SELECT * FROM cus_posts";
+$searchQuery = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['search'])) {
+    $search = $_POST['search'];
+    $searchQuery = " WHERE need_t LIKE :search";
+}
+
+$sql = "SELECT * FROM cus_posts" . $searchQuery;
 $stmt = $pdo->prepare($sql);
-$stmt->execute();
+
+if (!empty($searchQuery)) {
+    $stmt->execute(['search' => "%" . $search . "%"]);
+} else {
+    $stmt->execute();
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['job_category'])) {
+        $selected_categories = $_POST['job_category'];
+        // Process the selected categories...
+        // Example: print_r($selected_categories);
+    }
+}
+
 $jobs = $stmt->fetchAll();
 ?>
 
@@ -33,18 +53,14 @@ $jobs = $stmt->fetchAll();
         }
     </style>
 </head>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Job Posts</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
 <body>
 
-<div class="container  ">
+<div class="container">
+    
+
     <?php foreach ($jobs as $job): ?>
     <div class="card mb-4 shadow">
-        <div class="row no-gutters ">
+        <div class="row no-gutters">
             <div class="col-md-4">
                 <img class="card-img" src="<?php echo htmlspecialchars($job['image1'], ENT_QUOTES, 'UTF-8'); ?>" alt="Job image">
             </div>
@@ -55,7 +71,7 @@ $jobs = $stmt->fetchAll();
                         Name: <?php echo $job['name']; ?><br>
                         Area: <?php echo $job['location']; ?><br>                       
                         Address: <?php echo $job['address']; ?><br>
-                        Searching: <?php echo $job['need_t']; ?>; ?><br>
+                        Searching: <?php echo $job['need_t']; ?><br> <!-- Removed redundant ;?> -->
                         Phone Number: <?php echo $job['phone_number']; ?>
                     </p>
                     <!-- Message Button -->
@@ -77,6 +93,3 @@ $jobs = $stmt->fetchAll();
 
 </body>
 </html>
-
-</html>
-
