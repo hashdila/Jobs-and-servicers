@@ -75,9 +75,13 @@ $jobs = $stmt->fetchAll();
                         Phone Number: <?php echo $job['phone_number']; ?>
                     </p>
                     <!-- Message Button -->
-                    <a href="message.php?job_id=<?php echo $job['job_id']; ?>">
-                        <button type="button" class="btn btn-primary">Message</button>
-                    </a>
+                    <form action="start_chat.php" method="post">
+                        <input type="hidden" name="start_chat_with_cus_id" value="<?php echo $job['job_id']; ?>">
+                        <input type="submit" class="btn btn-info" value="Start Chat">
+                    </form>
+
+                    
+
 
                     <!-- Accept Post Button -->
                     <form action="cus_accept.php" method="get">

@@ -72,6 +72,9 @@ $username = $_SESSION["username"];
                 <li class="nav-item">
                     <a class="nav-link" href="tec_display.php">Cus Display</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cus_chat.php">CusDisplay</a>
+                </li>
             </ul>
 
             <ul class="navbar-nav ms-auto">
