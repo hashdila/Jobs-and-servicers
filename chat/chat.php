@@ -20,9 +20,9 @@
           }
         ?>
         <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="php/images/<?php echo $row['img']; ?>" alt="">
+        <img src="profile images <?php echo $row['profile_image']; ?>" alt="">
         <div class="details">
-          <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
+          <span><?php echo $row['name'] ?></span>
           <p><?php echo $row['status']; ?></p>
         </div>
       </header>

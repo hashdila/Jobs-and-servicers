@@ -73,7 +73,7 @@ $username = $_SESSION["username"];
                     <a class="nav-link" href="tec_display.php">Cus Display</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cus_chat.php">CusDisplay</a>
+                    <a class="nav-link" href="chat/users.php">chat</a>
                 </li>
             </ul>
 

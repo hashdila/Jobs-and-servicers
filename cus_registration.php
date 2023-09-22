@@ -1,4 +1,6 @@
 <?php
+session_start(); // Added session_start to use session variables.
+
 // Database connection
 $servername = "localhost";
 $username = "root";
@@ -25,9 +27,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_dir . $profile_image);
     }
 
-    $sql = "INSERT INTO cus (name, email, nic, address, username, password, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    // Generate a random unique ID for the user
+    $unique_id = rand(time(), 100000000);
+
+    // Set the status (you can change the value according to your requirements)
+    $status = "Active now";
+
+    // Updated SQL query to include unique_id and status
+    $sql = "INSERT INTO users (unique_id, name, email, nic, address, username, password, profile_image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssss", $name, $email, $nic, $address, $username, $password, $profile_image);
+
+    // Updated bind_param to include unique_id and status
+    $stmt->bind_param("issssssss", $unique_id, $name, $email, $nic, $address, $username, $password, $profile_image, $status);
 
     if ($stmt->execute()) {
         echo "New record created successfully";
@@ -42,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
+
 
 <!-- I will not be repeating the entire HTML part since it is largely unchanged. Just provide the changes below. -->
 

@@ -2,16 +2,16 @@
 session_start();
 
 $host = "localhost";
-$db   = "jas";
+$db = "jas";
 $user = "root";
 $pass = "";
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $opt = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
+    PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
 $pdo = new PDO($dsn, $user, $pass, $opt);
@@ -24,13 +24,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $job_category = $_POST["job_category"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
+    // Set the status (you can change the value according to your requirements)
+    $status = "Active now";
+
     $profile_image = $_FILES["profile_image"]["name"];
     $target_dir = "profile images/";
     move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_dir . $profile_image);
 
-    $sql = "INSERT INTO tec(username, name, email, address, job_category, password, profile_image) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt= $pdo->prepare($sql);
-    $stmt->execute([$username, $name, $email, $address, $job_category, $password, $target_dir . $profile_image]);
+    // Generate a random ID for the user
+    $ran_id = rand(time(), 100000000);
+
+    // Update your SQL statement to include the unique_id and status fields
+    $sql = "INSERT INTO users(unique_id, username, name, email, address, job_category, password, profile_image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    // Update the execute() array to include the random ID and status
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$ran_id, $username, $name, $email, $address, $job_category, $password, $target_dir . $profile_image, $status]);
 
     echo "User registered successfully!";
 
@@ -38,14 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
 
-    // Redirect to tec_dashboard.php
+    // Redirect to tec_login.php
     header('Location: tec_login.php');
     exit;
-    
-    
 }
-
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

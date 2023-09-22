@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $sql = "SELECT * FROM tec WHERE username = ?";
+    $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$username]);
     $user = $stmt->fetch();
@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["name"] = $user["name"];
         $_SESSION["email"] = $user["email"];
         $_SESSION['profile_image'] = $row['profile_image'];
+        $_SESSION["unique_id"] = $user["unique_id"];
         
         // Redirect user to welcome page
         header("location: tec_home.php");

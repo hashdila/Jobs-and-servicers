@@ -68,6 +68,9 @@ $username = $_SESSION["username"];
                 <li class="nav-item">
                     <a class="nav-link" href="tec_cus_display.php">Cus Display</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="chat/users.php">chat</a>
+                </li>
             </ul>
 
             <!-- Login Dropdown -->

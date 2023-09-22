@@ -24,7 +24,7 @@ $pdo = new PDO($dsn, $user, $pass, $opt);
 $cus_id = $_SESSION["id"];
 
 // Fetch technician's basic details
-$stmt = $pdo->prepare("SELECT * FROM cus WHERE id = ?");
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$cus_id]);
 $userDetails = $stmt->fetch();
 
