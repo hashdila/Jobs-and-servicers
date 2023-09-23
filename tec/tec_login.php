@@ -31,11 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["username"] = $username;
         $_SESSION["name"] = $user["name"];
         $_SESSION["email"] = $user["email"];
-        $_SESSION["NIC"] = $user["NIC"];
+        $_SESSION['profile_image'] = $row['profile_image'];
         $_SESSION["unique_id"] = $user["unique_id"];
-
+        
         // Redirect user to welcome page
-        header("location: cus_home.php");
+        header("location: tec_home.php");
     } else {
         // Display an error message if password is not valid
         echo "The username or password was incorrect.";
@@ -116,14 +116,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div id="splitScreenContainer">
         <!-- Background Video -->
         <video autoplay muted loop id="bgVideo">
-            <source src="application/logvideo.mp4" type="video/mp4">
+            <source src="../application/logvideo.mp4" type="video/mp4">
             
         </video>
 
         <!-- Login Part -->
         <div id="loginPart">
             <h5 class="modal-title text-white mb-4 display-2">Login</h5>
-            <form action="cus_login.php" method="post">
+            <form action="tec_login.php" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label text-white fs-3">Username</label>
                     <input type="text" class="form-control form-control-lg" id="username" name="username" required>
@@ -136,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" class="btn btn-primary btn-lg">Login</button>
                 </div>
                 <div class="mt-4">
-                    <p class="text-white fs-4">Don't have an account? <a href="cus_registration.php" class="text-warning">Sign up</a></p>
+                    <p class="text-white fs-4">Don't have an account? <a href="tec_registration.php" class="text-warning">Sign up</a></p>
                 </div>
             </form>
         </div>
@@ -146,13 +146,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
 
 

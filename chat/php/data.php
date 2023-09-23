@@ -19,7 +19,7 @@
                     <div class="content">
                     <img src="profile images'. $row['profile_image'] .'" alt="">
                     <div class="details">
-                        <span>'. $row['name']. '</span>
+                        <span>'. $row['name'].'</span>
                         <p>'. $you . $msg .'</p>
                     </div>
                     </div>

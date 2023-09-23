@@ -62,7 +62,7 @@ $jobs = $stmt->fetchAll();
     <div class="card mb-4 shadow">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img class="card-img" src="<?php echo htmlspecialchars($job['image1'], ENT_QUOTES, 'UTF-8'); ?>" alt="Job image">
+                <img class="card-img" src="<?php echo htmlspecialchars($job['image1'], ENT_QUOTES, 'UTF-8'); ?>" alt="../images/">
             </div>
             <div class="col-md-8">
                 <div class="card-body">

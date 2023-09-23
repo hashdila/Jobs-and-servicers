@@ -19,12 +19,12 @@
             <!-- Right Column (40%) -->
             <div class="col-md-9 ">
                     <div class="mapping  shadow mt-2 ">
-                        <?php include 'tec_map.php'; ?>
+                        <?php include '../tec/tec_map.php'; ?>
                     </div>
                     <br>
                     <br>
                     <div class=" mt-2  ">
-                        <?php include 'homedisplaypost.php'; ?>
+                        <?php include '../homedisplaypost.php'; ?>
                     </div>
             </div>
         </div>

@@ -17,13 +17,13 @@
               $row = mysqli_fetch_assoc($sql);
             }
           ?>
-          <!-- <img src="chat/php/images/<?php echo $row['img']; ?>" alt="">
+          <img src="profile images<?php echo $row['profile_image']; ?>" alt="">
           <div class="details">
-            <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
+            <span><?php echo $row['name'] ?></span>
             <p><?php echo $row['status']; ?></p>
-          </div> -->
+          </div>
         </div>
-        <a href="chat/php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a>
+        <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a>
       </header>
       <div class="search">
         <span class="text">Select an user to start chat</span>
@@ -36,7 +36,7 @@
     </section>
   </div>
 
-  <script src="javascript/users.js"></script>
+  <script src="users.js"></script>
 
 </body>
 </html>

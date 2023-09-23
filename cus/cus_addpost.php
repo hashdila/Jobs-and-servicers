@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $image2 = $_FILES["image2"]["name"];
     $image3 = $_FILES["image3"]["name"];
 
-    $target_dir = "images/";
+    $target_dir = "../images/";
 
     move_uploaded_file($_FILES["image1"]["tmp_name"], $target_dir . $image1);
     move_uploaded_file($_FILES["image2"]["tmp_name"], $target_dir . $image2);

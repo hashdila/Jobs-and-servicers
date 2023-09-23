@@ -1,3 +1,7 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +48,7 @@ $username = $_SESSION["username"];
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="images/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            <img src="../images/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
         </a>
 
         <!-- Toggler for small screens -->
@@ -57,23 +61,22 @@ $username = $_SESSION["username"];
             <ul class="navbar-nav">
                 <!-- Other Nav items -->
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_home.php">Home</a>
+                    <a class="nav-link" href="cus_home.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_addpost.php">Add Post</a>
+                    <a class="nav-link" href="cus_addpost.php">Add Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_display.php">Display</a>
+                    <a class="nav-link" href="cus_display.php">Display</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_cus_display.php">Cus Display</a>
+                    <a class="nav-link" href="tec_display.php">Cus Display</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="chat/users.php">chat</a>
+                    <a class="nav-link" href="../chat/users.php">chat</a>
                 </li>
             </ul>
 
-            <!-- Login Dropdown -->
             <ul class="navbar-nav ms-auto">
                 <div class="user-info">
                     <div class="display-6"><?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?></div>
@@ -81,19 +84,14 @@ $username = $_SESSION["username"];
                 </div>
                 <!-- Profile Image -->
                 <li class="nav-item">
-                <a class="nav-link" href="tec_profile.php">    
-                <img src="<?php echo isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image']) ? $_SESSION['profile_image'] : 'profile images/profile.png'; ?>"
+                <a class="nav-link" href="cus_profile.php">    
+                <img src="<?php echo isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image']) ? $_SESSION['profile_image'] : '../profile images/profile.png'; ?>"
                  alt="Profile Image" class="circle" width="50" height="50"></a>
 
                 </li>
             </ul>
-
-            
-
-            
-            <ul>
                 <div class="text-center mt-4">
-                    <a href="logout.php" class="btn btn-danger">Logout</a>
+                    <a href="../logout.php" class="btn btn-danger">Logout</a>
                 </div>
             </ul>    
         </div>
@@ -102,3 +100,9 @@ $username = $_SESSION["username"];
 
 
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

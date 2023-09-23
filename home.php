@@ -40,15 +40,15 @@
 <nav class="container navbar navbar-expand-lg navbar-light bg-tranceperent fixed-top">
     <div class="container-fluid">
         <!-- Logo Section -->
-        <a class="navbar-brand d-flex align-items-center" href="admin/ad_home.php">
+        <a class="navbar-brand d-flex align-items-center" href="admin/ad_login.php">
             <img src="application/logo.png" alt="Your Logo" width="65" height="65" class="d-inline-block align-top">
             <span class="ms-3" style="font-size: 1.5rem;">Jobs and servisers</span>
         </a>
 
         <!-- Buttons Section -->
         <div class="d-flex">
-            <a href="tec_login.php" class="btn btn-primary me-2" role="button">Technician Login</a>
-            <a href="cus_login.php" class="btn btn-success" role="button">Customer Login</a>
+            <a href="tec/tec_login.php" class="btn btn-primary me-2" role="button">Technician Login</a>
+            <a href="cus/cus_login.php" class="btn btn-success" role="button">Customer Login</a>
         </div>
     </div>
 </nav>

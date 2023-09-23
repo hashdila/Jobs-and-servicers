@@ -59,7 +59,7 @@
             <!-- Right Column  -->
             <div class="col-md-9 ">
                     <div class="mapping  shadow mt-2 ">
-                        <?php include 'cus_map.php'; ?>
+                        <?php include '../cus/cus_map.php'; ?>
                     </div>
                     <br>
                     <br>

@@ -1,6 +1,6 @@
 <?php
 // Assuming you have a database connection set up as $conn
-require_once 'db_con.php';
+require_once '../db_con.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['job_id'])) {
@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // Successfully deleted the post
-            header("Location: cus_profile.php");
+            header("Location: ../cus/cus_profile.php");
         } else {
             // Error deleting the post
-            header("Location: cus_profile.php");
+            header("Location: ../cus/cus_profile.php");
         }
         
         $stmt->close();
