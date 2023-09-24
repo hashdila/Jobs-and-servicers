@@ -30,6 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+
+<?php include 'ad_nav.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-dark text-white">
+<body class=" text-black">
     <div class="container mt-5">
         <h1>Edit Post</h1>
         <form action="" method="POST">

@@ -52,7 +52,11 @@ $pdf->AddPage();
 $html = '<h1>Tec Post Details</h1>';
 $html .= '<h2>' . htmlspecialchars($post['name']) . '</h2>';
 $html .= '<p><strong>Type:</strong> ' . $post['need_t'] . '</p>';
-$html .= '<p><strong>Age:</strong> ' . $post['age'] . '</p>';
+
+$html .= '<p><strong>Description:</strong> ' . $post['work_description'] . '</p>';
+$html .= '<p><strong>Phone number:</strong> ' . $post['phone_number'] . '</p>';
+$html .= '<p><strong>Adderess:</strong> ' . $post['address'] . '</p>';
+
 //... Add other details similarly
 
 $pdf->writeHTML($html, true, 0, true, 0);

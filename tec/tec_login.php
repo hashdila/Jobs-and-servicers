@@ -1,5 +1,7 @@
 <?php
 
+
+
 $host = "localhost";
 $db   = "jas";
 $user = "root";

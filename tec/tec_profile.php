@@ -51,6 +51,7 @@ $jobs = $stmt->fetchAll();
     </style>
 </head>
 <body>
+<?php include 'tec_dashbord.php'; ?>
 
 <div class="container mt-5 text-black">
 

@@ -8,12 +8,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .navbar-nav .nav-link i, .navbar-nav .nav-link {
+            font-size: 1.5em;  /* Adjust this value as per your requirement */
+        }
+        </style>
 </head>
 <body>
 
 <?php
 // Start the session to access stored user information
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 // Display message after job post acceptance
 if (isset($_SESSION['message'])) {
@@ -36,6 +45,7 @@ if (!isset($_SESSION["username"])) {
 // Retrieve the user's name from the session
 $username = $_SESSION["username"];
 
+
 ?>
 
 
@@ -44,7 +54,7 @@ $username = $_SESSION["username"];
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="../images/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+            <img src="../images/logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
         </a>
 
         <!-- Toggler for small screens -->
@@ -60,18 +70,21 @@ $username = $_SESSION["username"];
                     <a class="nav-link" href="tec_home.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_addpost.php">Add Post</a>
+                    <a class="nav-link" href="tec_addpost.php"><i class="fas fa-plus"></i> Add Post</a>
                 </li>
+                <!-- 
                 <li class="nav-item">
                     <a class="nav-link" href="tec_display.php">Display</a>
-                </li>
+                </li> 
                 <li class="nav-item">
                     <a class="nav-link" href="tec_cus_display.php">Cus Display</a>
-                </li>
+                </li> 
+                -->
                 <li class="nav-item">
-                    <a class="nav-link" href="../chat/users.php">chat</a>
+                    <a class="nav-link" href="../chat/users.php"><i class="fas fa-comments"></i> Chat</a>
                 </li>
             </ul>
+
 
             <!-- Login Dropdown -->
             <ul class="navbar-nav ms-auto">

@@ -1,6 +1,6 @@
 <?php
 // Assuming you have a database connection set up as $conn
-require_once 'db_con.php';
+require_once '../db_con.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['job_id'])) {
