@@ -2,16 +2,8 @@
 session_start(); // Added session_start to use session variables.
 
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "jas";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../database_con.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
@@ -35,22 +27,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Updated SQL query to include unique_id and status
     $sql = "INSERT INTO users (unique_id, name, email, nic, address, username, password, profile_image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
+    $stmt = $pdo->prepare($sql);
 
     // Updated bind_param to include unique_id and status
-    $stmt->bind_param("issssssss", $unique_id, $name, $email, $nic, $address, $username, $password, $profile_image, $status);
+    $stmt->execute([ $unique_id, $name, $email, $nic, $address, $username, $password, $profile_image, $status]);
 
-    if ($stmt->execute()) {
-        echo "New record created successfully";
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $username;
-        header('Location: cus_login.php');
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+    echo "User registered successfully!";
 
-    $stmt->close();
-    $conn->close();
+    // Log the user in
+    $_SESSION['loggedin'] = true;
+    $_SESSION['username'] = $username;
+
+    // Redirect to tec_login.php
+    header('Location: cus_login.php');
+    exit;
 }
 ?>
 
@@ -205,10 +195,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <video autoplay muted loop id="bgVideo">
-            <source src="application/logvideo.mp4" type="video/mp4">
+            <source src="../application/logvideo.mp4" type="video/mp4">
         </video>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

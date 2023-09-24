@@ -13,19 +13,12 @@
 </head>
 <body>
 
-<?php
-$host = 'localhost';  
-$db   = 'jas';  
-$user = 'root';  
-$pass = '';  
-$charset = 'utf8mb4'; 
+<?php include 'home_map.php'; ?>
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$opt = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+<?php
+
+
+
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
 $sql1 = "SELECT * FROM tec_posts";

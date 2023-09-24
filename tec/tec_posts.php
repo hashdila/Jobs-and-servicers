@@ -8,18 +8,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 // ...  database connection code here ...
 
-$host = "localhost";
-$db   = "jas";
-$user = "root";
-$pass = "";
-$charset = 'utf8mb4';
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$opt = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+include '../database_con.php';
 
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
