@@ -10,11 +10,7 @@ $job_id = $_GET['job_id'];
 
 include '../database_con.php';
 
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
+
 
 // Your PDO code here
 
@@ -52,5 +48,5 @@ $html .= '<p><strong>Adderess:</strong> ' . $post['address'] . '</p>';
 $pdf->writeHTML($html, true, 0, true, 0);
 
 // Close and output PDF
-$pdf->Output('tec_post_details.pdf', 'D'); // D - send to the browser and force a file download
+$pdf->Output('job details.pdf', 'D'); // D - send to the browser and force a file download
 ?>

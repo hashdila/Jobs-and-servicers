@@ -12,6 +12,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <style>
+        .navbar-nav .nav-link i, .navbar-nav .nav-link {
+            font-size: 1.5em;  /* Adjust this value as per your requirement */
+        }
+        .navbar.bg-light-green {
+        background-color: #98FB98 !important;  /* This is the light green color */
+}
+
+        </style>
+
 </head>
 <body>
 
@@ -46,59 +58,41 @@ $username = $_SESSION["username"];
 
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand  bg-light-green">
     <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand" href="#">
-            <img src="../images/logo.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-        </a>
-
-        <!-- Toggler for small screens -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- <a class="navbar-brand" href="#">
+            <img src="../images/logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
+        </a> -->
 
         <!-- Nav items and login button -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <!-- Other Nav items -->
-                <li class="nav-item">
-                    <a class="nav-link" href="cus_home.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cus_addpost.php">Add Post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cus_display.php">Display</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tec_display.php">Cus Display</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../chat/users.php">chat</a>
-                </li>
-            </ul>
+        <ul class="navbar-nav">
+            <!-- Other Nav items -->
+            <li class="nav-item">
+                <a class="nav-link" href="cus_home.php"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <!-- More Nav items ... -->
+        </ul>
 
-            <ul class="navbar-nav ms-auto">
-                <div class="user-info">
-                    <div class="display-6"><?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?></div>
-                    <div class="fs-6 text-muted"><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?></div>
-                </div>
-                <!-- Profile Image -->
-                <li class="nav-item">
+
+        <ul class="navbar-nav ms-auto">
+            <div class="user-info">
+                <div class="display-6"><?php echo isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?></div>
+                <div class="fs-6 text-muted"><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?></div>
+            </div>
+            <!-- Profile Image -->
+            <li class="nav-item">
                 <a class="nav-link" href="cus_profile.php">    
                 <img src="<?php echo isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image']) ? $_SESSION['profile_image'] : '../profile images/profile.png'; ?>"
                  alt="Profile Image" class="circle" width="50" height="50"></a>
-
-                </li>
-            </ul>
-                <div class="text-center mt-4">
-                    <a href="../logout.php" class="btn btn-danger">Logout</a>
-                </div>
-            </ul>    
-        </div>
+            </li>
+        </ul>
+        <div class="text-center mt-4">
+            <a href="../logout.php" class="btn btn-danger">Logout</a>
+        </div>   
     </div>
 </nav>
+
 
 
 

@@ -24,7 +24,7 @@ $locations = $stmt->fetchAll();
 ?>
 
 <div class="container">
-    <h1 class="mt-5">Display Locations on Google Maps</h1>
+    <h1 class="mt-5">Display Locations of Technicias</h1>
     <div id="map"></div>
 </div>
 

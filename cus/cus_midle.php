@@ -11,8 +11,11 @@
     <div class="container">
         <div class="row">
             <!-- Left Column (60%) -->
-            <div class="col-md-3 bg-primary">
+            <div class="col-md-3 ">
 
+            <?php include 'cus_addbutton.php'; ?>
+
+            <?php include 'cus_midsearch.php'; ?>
             
                 
             </div>
@@ -24,7 +27,7 @@
                     <br>
                     <br>
                     <div class=" mt-2  ">
-                        <?php include '../homedisplaypost.php'; ?>
+                        <?php include 'cus_middledis.php'; ?>
                     </div>
             </div>
         </div>

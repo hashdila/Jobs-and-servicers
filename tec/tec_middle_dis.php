@@ -62,7 +62,8 @@ $jobs = $stmt->fetchAll();
                         Area: <?php echo $job['location']; ?><br>                       
                         Address: <?php echo $job['address']; ?><br>
                         Searching: <?php echo $job['need_t']; ?><br> <!-- Removed redundant ;?> -->
-                        Phone Number: <?php echo $job['phone_number']; ?>
+                        Phone Number: <?php echo $job['phone_number']; ?><br>
+                        Price: Rs.<?php echo $job['price']; ?>.00
                     </p>
                     <!-- Message Button -->
                     

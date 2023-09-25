@@ -70,18 +70,11 @@ $username = $_SESSION["username"];
                     <a class="nav-link" href="tec_home.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_addpost.php"><i class="fas fa-plus"></i> Add Post</a>
+                    <a class="nav-link" href="tec_addpost.php"> Add Post</a>
                 </li>
-                <!-- 
+                
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_display.php">Display</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link" href="tec_cus_display.php">Cus Display</a>
-                </li> 
-                -->
-                <li class="nav-item">
-                    <a class="nav-link" href="../chat/users.php"><i class="fas fa-comments"></i> Chat</a>
+                    <a class="nav-link" href="../chat/users.php"></i> Chat</a>
                 </li>
             </ul>
 

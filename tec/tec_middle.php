@@ -12,6 +12,9 @@
         <div class="row">
             <!-- Left Column -->
             <div class="col-md-3 ">
+
+            <?php include 'tec_addbutton.php'; ?>
+
                 <div class="container mt-4">
                     <!-- Search Bar -->
                     <div class="searchbar mb-4">

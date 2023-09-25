@@ -13,11 +13,11 @@
 </head>
 <body>
 
-<?php include 'home_map.php'; ?>
+
 
 <?php
 
-
+include 'database_con.php';
 
 $pdo = new PDO($dsn, $user, $pass, $opt);
 

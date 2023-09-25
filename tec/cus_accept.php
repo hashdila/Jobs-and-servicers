@@ -2,11 +2,7 @@
 
 include '../database_con.php';
 
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
+
 
 if (isset($_GET['job_id'])) {
     $job_id = $_GET['job_id'];
@@ -44,6 +40,10 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
+
+<?php include 'tec_dashbord.php'; ?>
+
 
 <div class="container mt-5">
     <h2>Tec Post Details</h2>
@@ -83,26 +83,86 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 <!-- Card Body -->
                 <div class="card-body">
-                    <h4 class="card-title"><?php echo htmlspecialchars($post['name']); ?></h4>
-                    <p class="card-text">
-                        <strong>Type:</strong> <?php echo $post['need_t']; ?><br>
-                        <strong>Age:</strong> <?php echo $post['age']; ?><br>
-                        <strong>Address:</strong> <?php echo htmlspecialchars($post['address']); ?><br>
-                        <strong>Description:</strong> <?php echo htmlspecialchars($post['work_description']); ?><br>
-                        <strong>Area:</strong> <?php echo htmlspecialchars($post['location']); ?><br>
-                        <strong>Phone:</strong> <?php echo $post['phone_number']; ?><br>
-
-                        
-                    </p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <h2 class="mb-0">Job Details</h2>
+                        </div>
+                        <div class="col-6 text-right">
+                            <h4 class="mb-0">Job ID: <?php echo $job_id; ?></h4>
+                        </div>
+                    </div>
+                    
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Name</th>
+                            <td><?php echo htmlspecialchars($post['name']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <td><?php echo $post['need_t']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Address</th>
+                            <td><?php echo htmlspecialchars($post['address']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td><?php echo htmlspecialchars($post['work_description']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Area</th>
+                            <td><?php echo htmlspecialchars($post['location']); ?></td>
+                        </tr>
+                        <tr>
+                            <th>Phone</th>
+                            <td><?php echo $post['phone_number']; ?></td>
+                        </tr>
+                        <tr>
+                            <th>Price (Rs.)</th>
+                            <td><?php echo $post['price']; ?>.00</td>
+                        </tr>
+                    </table>
                     <!-- Accept Post Button -->
                     <!-- <form action="cus_qr.php" method="get">
                         <input type="hidden" name="job_id"  value="<?php echo $job['job_id']; ?>">
                         <input type="submit" class="btn btn-success"value=" comform">
                         </form> -->
+                        <div class="row mt-4">
+                            <div class="col-6">
+                        <form action="accept_job.php" method="post">
+                            <input type="hidden" name="job_id" value="<?php echo $job_id; ?>">
+                            <input type="hidden" name="name" value="<?php echo htmlspecialchars($post['name']); ?>">
+                            <input type="hidden" name="address" value="<?php echo htmlspecialchars($post['address']); ?>">
+                            <input type="hidden" name="work_description" value="<?php echo htmlspecialchars($post['work_description']); ?>">
+                            <input type="hidden" name="location" value="<?php echo htmlspecialchars($post['location']); ?>">
+                            <input type="hidden" name="phone_number" value="<?php echo htmlspecialchars($post['phone_number']); ?>">
+                            <input type="hidden" name="price" value="<?php echo htmlspecialchars($post['price']); ?>">
 
-                        <a href="cus_pdf.php?job_id=<?php echo $job_id; ?>" class="btn btn-success">Accept</a>
+                            <!-- Accept Job Button -->
+                            <button type="submit" class="btn btn-primary">Accept</button> 
+                            </form>
+                            </div>
+                            <div class="col-6">
+                        <form action="tec_pdf.php" method="post">
+                            <input type="hidden" name="job_id" value="<?php echo $job_id; ?>">
+                            <input type="hidden" name="tec_id" value="<?php echo $tec_id; ?>">
+                            <input type="hidden" name="name" value="<?php echo htmlspecialchars($post['name']); ?>">
+                            <input type="hidden" name="address" value="<?php echo htmlspecialchars($post['address']); ?>">
+                            <input type="hidden" name="work_description" value="<?php echo htmlspecialchars($post['work_description']); ?>">
+                            <input type="hidden" name="location" value="<?php echo htmlspecialchars($post['location']); ?>">
+                            <input type="hidden" name="phone_number" value="<?php echo htmlspecialchars($post['phone_number']); ?>">
+                            <input type="hidden" name="price" value="<?php echo htmlspecialchars($post['price']); ?>">
+                            <!-- Add other hidden fields similarly -->
+
+                            <!-- Download PDF Button -->
+                            <button type="submit" class="btn btn-danger">Download PDF</button>
+                        </form>
 
 
+                    </div>
+                    </div>
+
+                        
                 </div>
             </div>
       
@@ -154,7 +214,25 @@ $post = $stmt->fetch(PDO::FETCH_ASSOC);
 
 </div>
 
-
+<!-- <script>
+    function handleAccept(jobId) {
+        // First, accept the job
+        fetch(`accept_job.php?job_id=${jobId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // If the job was accepted successfully, redirect to generate PDF
+                window.location.href = `cus_pdf.php?job_id=${jobId}`;
+            })
+            .catch(error => {
+                console.log('There was a problem with the fetch operation:', error.message);
+            });
+    }
+</script> -->
 
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">

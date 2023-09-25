@@ -6,9 +6,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-
 include '../database_con.php';
-
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,38 +18,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone_number = $_POST["phone_number"];
     $cus_id = $_SESSION["id"];
     $need_t = $_POST["need_t"];
-
     $lat = $_POST["lat"];
     $lng = $_POST["lng"];
     $mapAddress = $_POST["map_address"];
+    $price = $_POST["price"]; // Retrieve the price value from $_POST
 
     $image1 = $_FILES["image1"]["name"];
     $image2 = $_FILES["image2"]["name"];
     $image3 = $_FILES["image3"]["name"];
-
     $target_dir = "../images/";
 
     move_uploaded_file($_FILES["image1"]["tmp_name"], $target_dir . $image1);
     move_uploaded_file($_FILES["image2"]["tmp_name"], $target_dir . $image2);
     move_uploaded_file($_FILES["image3"]["tmp_name"], $target_dir . $image3);
 
-    // $sql = "INSERT INTO locations (lat, lng, address) VALUES (?, ?, ?)";
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->execute([$lat, $lng, $mapAddress]);
-
-    // $sql = "INSERT INTO tec_posts (name, age, address, work_description, image1, image2, image3, location, phone_number, tec_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->execute([$name, $age, $address, $work_description, $target_dir . $image1, $target_dir . $image2, $target_dir . $image3, $location, $phone_number, $tec_id]);
-
-    $sql = "INSERT INTO cus_posts (name, age, address, work_description, image1, image2, image3, location, phone_number, cus_id, need_t, lat, lng, map_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // Modify your SQL statement to include the price column and its placeholder
+    $sql = "INSERT INTO cus_posts (name, age, address, work_description, image1, image2, image3, location, phone_number, price, cus_id, need_t, lat, lng, map_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$name, $age, $address, $work_description, $target_dir . $image1, $target_dir . $image2, $target_dir . $image3, $location, $phone_number, $cus_id, $need_t, $lat, $lng, $mapAddress]);
 
-
+    // Include the price value in the array you pass to $stmt->execute()
+    $stmt->execute([$name, $age, $address, $work_description, $target_dir . $image1, $target_dir . $image2, $target_dir . $image3, $location, $phone_number, $price, $cus_id, $need_t, $lat, $lng, $mapAddress]);
 
     header("Location: cus_home.php");
 }
 ?>
+
 
 
 
@@ -117,7 +108,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label for="work_description"><strong>Work Description</strong></label>
-                    <textarea name="work_description" class="form-control"></textarea>
+                    <textarea name="text" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="price"><strong>price</strong></label>
+                    <input type="text" name="price" class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="location"><strong>Area</strong></label>
