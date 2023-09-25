@@ -8,6 +8,7 @@
 <?php include_once "header.php"; ?>
 <body>
   <div class="wrapper">
+
     <section class="chat-area">
       <header>
         <?php 

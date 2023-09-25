@@ -11,7 +11,7 @@
 
   
   <div class="container">
-  <?php include_once "tec_dash.php"; ?>
+  <?php include_once "cus_dash.php"; ?>
     <section class="users">
       <header>
         <div class="content">

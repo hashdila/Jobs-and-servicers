@@ -35,7 +35,7 @@
     </a>
 
     <!-- Second Button -->
-    <a href="../chat/users.php" class="animated-btn" style="display: block; text-align: center; background-image: url('../application/chat1.png'); width: 90px; height: 90px; background-size: contain; background-repeat: no-repeat; background-position: center; border: none; font-size: 50px; padding: 20px 40px; border-radius: 10px; text-decoration: none;">
+    <a href="../chat/usersc.php" class="animated-btn" style="display: block; text-align: center; background-image: url('../application/chat1.png'); width: 90px; height: 90px; background-size: contain; background-repeat: no-repeat; background-position: center; border: none; font-size: 50px; padding: 20px 40px; border-radius: 10px; text-decoration: none;">
     </a>
 </div>
 
