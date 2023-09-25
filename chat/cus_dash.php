@@ -69,7 +69,7 @@ $username = $_SESSION["username"];
         <ul class="navbar-nav">
             <!-- Other Nav items -->
             <li class="nav-item">
-                <a class="nav-link" href="cus_home.php"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link" href="../cus/cus_home.php"><i class="fas fa-home"></i> Home</a>
             </li>
             <!-- More Nav items ... -->
         </ul>
@@ -82,7 +82,7 @@ $username = $_SESSION["username"];
             </div>
             <!-- Profile Image -->
             <li class="nav-item">
-                <a class="nav-link" href="cus_profile.php">    
+                <a class="nav-link" href="../cus/cus_profile.php">    
                 <img src="<?php echo isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image']) ? $_SESSION['profile_image'] : '../profile images/profile.png'; ?>"
                  alt="Profile Image" class="circle" width="50" height="50"></a>
             </li>

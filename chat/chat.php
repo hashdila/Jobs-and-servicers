@@ -20,8 +20,8 @@
             header("location: users.php");
           }
         ?>
-        <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-        <img src="profile images<?php echo $row['profile_image']; ?>" alt="">
+
+        <img src="../chat/profile images<?php echo $row['profile_image']; ?>" alt="">
         <div class="details">
           <span><?php echo $row['name'] ?></span>
           <p><?php echo $row['status']; ?></p>

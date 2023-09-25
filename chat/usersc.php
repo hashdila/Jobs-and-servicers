@@ -23,7 +23,7 @@
           ?>
           
           <div class="details">
-            <span><?php echo $row['name'] ?></span>
+           
 
           </div>
         </div>

@@ -67,15 +67,9 @@ $username = $_SESSION["username"];
             <ul class="navbar-nav">
                 <!-- Other Nav items -->
                 <li class="nav-item">
-                    <a class="nav-link" href="tec_home.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tec_addpost.php"> Add Post</a>
+                    <a class="nav-link" href="../tec/tec_home.php">Home</a>
                 </li>
                 
-                <li class="nav-item">
-                    <a class="nav-link" href="../chat/users.php"></i> Chat</a>
-                </li>
             </ul>
 
 
@@ -87,7 +81,7 @@ $username = $_SESSION["username"];
                 </div>
                 <!-- Profile Image -->
                 <li class="nav-item">
-                <a class="nav-link" href="tec_profile.php">    
+                <a class="nav-link" href="../tec/tec_profile.php">    
                 <img src="<?php echo isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image']) ? $_SESSION['profile_image'] : '../profile images/profile.png'; ?>"
                  alt="Profile Image" class="circle" width="50" height="50"></a>
 
