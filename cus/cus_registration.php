@@ -150,6 +150,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div id="splitScreenContainer">
+
+    <div class="position-absolute top-0 start-0 p-3">
+        <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+    </div>
+    
         <div class="container" id="registrationPart">
             <h5 class="modal-title text-white mb-4 display-2">Customer Registration</h5>
             <form action="cus_registration.php" method="post"  enctype="multipart/form-data">

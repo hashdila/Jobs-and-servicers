@@ -181,6 +181,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Electrician"><strong>Electrician</strong></option>
                         <option value="Plumber"><strong>Plumber</strong></option>
                         <option value="Carpenter"><strong>Carpenter</strong></option>
+                        <option value="Electrician"><strong>Electrician</strong></option>
+                        <option value="Cleaner"><strong>Cleaner</strong></option>
+                        <option value="Driver"><strong>Driver</strong></option>
                         <!-- Add more options as needed -->
                     </select>
                 </div>

@@ -2,13 +2,26 @@
 include 'database_con.php';
 
 $job_category = isset($_GET['job_category']) ? $_GET['job_category'] : null;
+$location = isset($_GET['location']) ? $_GET['location'] : null;
+
 $results = [];
 
-if ($job_category) {
+if ($job_category && $location) {
+    $stmt = $pdo->prepare("SELECT * FROM tec_posts WHERE job_category = ? AND location = ?");
+    $stmt->execute([$job_category, $location]);
+} elseif ($job_category) {
     $stmt = $pdo->prepare("SELECT * FROM tec_posts WHERE job_category = ?");
     $stmt->execute([$job_category]);
-    $results = $stmt->fetchAll();
+} elseif ($location) {
+    $stmt = $pdo->prepare("SELECT * FROM tec_posts WHERE location = ?");
+    $stmt->execute([$location]);
 }
+if ($stmt->rowCount() > 0) {
+    $results = $stmt->fetchAll();
+} else {
+    echo "No results found.";
+}
+
 ?>
 
 <!DOCTYPE html>

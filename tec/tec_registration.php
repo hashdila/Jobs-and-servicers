@@ -29,14 +29,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$ran_id, $username, $name, $email, $address, $job_category, $password, $target_dir . $profile_image, $status]);
 
-    echo "User registered successfully!";
+    
+    
 
     // Log the user in
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
+    $_SESSION['registration_success'] = true;
 
-    // Redirect to tec_login.php
-    header('Location: tec_login.php');
+    echo "User registered successfully!";
+    header('Location: tec_registration.php');
+
+
+
+
     exit;
 }
 ?>
@@ -145,10 +151,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    
     <div  id="splitScreenContainer">
         <!-- Background Video -->
 
         <!-- Registration Part -->
+        <div class="position-absolute top-0 start-0 p-3">
+            <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+        </div>
         <div class="container" id="registrationPart">
                 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
                     <h5 class="modal-title text-white mb-4 display-2">Registration</h5>
@@ -187,6 +197,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Carpenter">Carpenter</option>
                         <option value="Mason">Mason</option>
                         <option value="Plumber">Plumber</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Cleaner">Cleaner</option>
+                        <option value="Driver">Driver</option>
+
                         
                     </select>
                 </div>
@@ -214,7 +228,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <video autoplay muted loop id="bgVideo">
             <source src="../application/logvideo.mp4" type="video/mp4">
         </video>
+
     </div>
+
+
+
+
+<!-- sucsess message -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="successModalLabel">Success!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            User registered successfully!
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="redirectToLogin()">OK</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+    <script>
+        function redirectToLogin() {
+            location.href = 'tec_login.php';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // If registration was successful, show the modal and unset the session variable
+            <?php if(isset($_SESSION['registration_success']) && $_SESSION['registration_success']): ?>
+            var myModal = new bootstrap.Modal(document.getElementById('successModal'), {});
+            myModal.show();
+            <?php unset($_SESSION['registration_success']); ?>
+            <?php endif; ?>
+        });
+    </script>
+
+
 
     <!-- Bootstrap 5 JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>

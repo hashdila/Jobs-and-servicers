@@ -3,6 +3,7 @@
 
 
 include '../database_con.php';
+$error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -27,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("location: tec_home.php");
     } else {
         // Display an error message if password is not valid
-        echo "The username or password was incorrect.";
+        $error = "The username or password was incorrect.";
     }
 }
 
@@ -43,6 +44,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <?php if ($error): ?>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        });
+    </script>
+    <?php endif; ?>
 
     <style>
         body, html {
@@ -102,6 +114,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+<button id="closePageBtn" class="btn btn-danger position-fixed top-0 end-0 m-3" onclick="closePage()">X</button>
+
     <div id="splitScreenContainer">
         <!-- Background Video -->
         <video autoplay muted loop id="bgVideo">
@@ -131,8 +145,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
+
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Login Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    The username or password was incorrect.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="location.tec_login.php">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        function closePage() {
+            window.location.href = '../home.php'; // change 'home.php' to your desired URL
+        }
+    </script>
+
+
     <!-- Bootstrap 5 JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>
 

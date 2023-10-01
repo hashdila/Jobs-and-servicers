@@ -109,6 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <source src="../application/logvideo.mp4" type="video/mp4">
             
         </video>
+        
+<button id="closePageBtn" class="btn btn-danger position-fixed top-0 end-0 m-3" onclick="closePage()">X</button>
 
         <!-- Login Part -->
         <div id="loginPart">
@@ -131,6 +133,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+    <script>
+    function closePage() {
+        window.location.href = '../home.php'; // change 'home.php' to your desired URL
+    }
+</script>
 
     <!-- Bootstrap 5 JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>

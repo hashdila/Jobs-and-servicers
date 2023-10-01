@@ -1,12 +1,15 @@
 <?php
 include 'database_con.php';
 
+
+
 $job_category = isset($_GET['job_category']) ? $_GET['job_category'] : null;
 $location = isset($_GET['location']) ? $_GET['location'] : null;
 
 if ($job_category && $location) {
     try {
         $stmt = $pdo->prepare("SELECT * FROM tec_posts WHERE job_category = ? AND location = ?");
+
         $stmt->execute([$job_category, $location]);
 
         $results = $stmt->fetchAll();
@@ -19,6 +22,7 @@ if ($job_category && $location) {
         exit;
     }
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -212,6 +216,9 @@ function searchData() {
                     <li><a class="dropdown-item" href="#" onclick="updateDropdown1('Carpenter')">Carpenter</a></li>
                     <li><a class="dropdown-item" href="#" onclick="updateDropdown1('Mason')">Mason</a></li>
                     <li><a class="dropdown-item" href="#" onclick="updateDropdown1('Plumber')">Plumber </a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown1('Electrician')">Electrician </a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown1('Cleaner')">Cleaner </a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown1('Driver')">Driver </a></li>
                     
 
 
@@ -230,7 +237,10 @@ function searchData() {
                     <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Kandy')">Kandy</a></li>
                     <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Peradeniya ')">Peradeniya</a></li>
                     <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Theldeniya')">Theldeniya</a></li>
-                    
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Negambo')">Negambo</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Colombo 1')">Colombo 1</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Colombo 2')">Colombo 2</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="updateDropdown2('Colombo 3')">Colombo 3</a></li>
                 </ul>
             </div>
         </div>

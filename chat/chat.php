@@ -21,7 +21,7 @@
           }
         ?>
 
-        <img src="../chat/profile images<?php echo $row['profile_image']; ?>" alt="">
+
         <div class="details">
           <span><?php echo $row['name'] ?></span>
           <p><?php echo $row['status']; ?></p>
