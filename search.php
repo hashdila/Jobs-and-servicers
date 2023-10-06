@@ -39,7 +39,7 @@ if ($job_category && $location) {
         .full-vh {
             height: 100vh;
             /* border: 2px solid #333; */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
             display: flex;
             flex-direction: column;
             justify-content: center;

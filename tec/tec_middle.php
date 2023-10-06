@@ -6,6 +6,17 @@
     <title>Two-Column Page with Different Widths using Bootstrap 5</title>
     <!-- Link to Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+    body {
+        background-image: url('../application/bactec.jpg'); /* Replace with the path to your image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* This makes sure your background image doesn't scroll */
+        background-position: center center; /* This will center your background */
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
@@ -40,6 +51,18 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="Electrician" id="Electrician" name="need_t[]">
                                     <label class="form-check-label" for="Electrician">Electrician</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Plumber" id="Plumber" name="need_t[]">
+                                    <label class="form-check-label" for="Electrician">Plumber</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Cleaner" id="Cleaner" name="need_t[]">
+                                    <label class="form-check-label" for="Electrician">Cleaner</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Driver" id="Driver" name="need_t[]">
+                                    <label class="form-check-label" for="Electrician">Driver</label>
                                 </div>
                                 <!-- Add more checkboxes as per your categories here... -->
                             </div>

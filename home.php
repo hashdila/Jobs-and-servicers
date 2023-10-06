@@ -22,7 +22,7 @@
         .custom-navbar {
             justify-content: center;
             align-items: center;
-            background-color: black; /* This gives a green color with 50% opacity */
+            background-color: black; 
         }
     }
 
@@ -69,12 +69,11 @@
 
 
 <?php include 'home_map.php'; ?>
-<br>
 
-<hr class="w-75 h-3 mx-auto shadow">
+
 
 <?php include 'homedisplaypost.php'; ?>
-<br>
+
 
 <?php include 'footer.php'; ?>
 

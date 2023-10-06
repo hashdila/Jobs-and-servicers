@@ -25,14 +25,23 @@ if (empty($jobs)) {
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technicians Posts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Include other CSS files or libraries as needed -->
+</head>
+<body>
+
 <div class="container mt-5">
     <h2 class="text-center">Technicians posts</h2>
 
-    <!-- Search Form -->
-    
-
     <?php
     $currentCategory = "";
+    $delay = 0; // Initialize delay outside the loop
     foreach ($jobs as $job) {
         if ($currentCategory != $job['job_category']) {
             if ($currentCategory != "") {
@@ -44,7 +53,7 @@ if (empty($jobs)) {
         }
     ?>
 
-    <div class="col-6 col-md-4 col-lg-3">
+    <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="<?php echo $delay; ?>">
         <div class="card h-100">
             <!-- Card Header with an Icon -->
             <div class="card-header bg-primary text-white">
@@ -68,6 +77,7 @@ if (empty($jobs)) {
     </div>
 
     <?php
+        $delay += 100;  // Increment delay for each card
     }
     if ($currentCategory != "") {
         echo '</div>';  // close the last row
@@ -75,3 +85,16 @@ if (empty($jobs)) {
     ?>
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    AOS.init({
+        offset: 200,
+        duration: 600,  // Duration of animation
+        easing: 'ease-in-out',  // Animation easing function
+        once: true  // Animate only once
+    });
+</script>
+
+</body>
+</html>

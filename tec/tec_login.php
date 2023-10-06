@@ -44,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -131,10 +133,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="username" class="form-label text-white fs-3">Username</label>
                     <input type="text" class="form-control form-control-lg" id="username" name="username" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     <label for="password" class="form-label text-white fs-3">Password</label>
                     <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+                    <span class="text-white fs-6" style="cursor: pointer;" onclick="togglePasswordVisibility()">Show Password</span>
                 </div>
+
+
+
+
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary btn-lg">Login</button>
                 </div>
@@ -171,9 +178,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 
-
+<script>
+        function togglePasswordVisibility() {
+            let passwordField = document.getElementById('password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+        </script>
     <!-- Bootstrap 5 JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
     
 </body>
 </html>

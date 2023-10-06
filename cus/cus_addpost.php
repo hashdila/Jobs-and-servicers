@@ -7,6 +7,20 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 }
 
 include '../database_con.php';
+
+$userDetails = [];
+
+if (isset($_SESSION["id"])) {
+    $tec_id = $_SESSION["id"];
+    $sql = "SELECT name, address FROM users WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$tec_id]);
+
+    $userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -82,6 +96,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* Apply custom fonts */
         body {
             font-family: Arial, sans-serif;
+            background-image: url('../application/tecaddhome.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -99,12 +117,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <!-- Your form fields here... -->
                 <div class="form-group">
                     <label for="name"><strong>Name</strong></label>
-                    <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" class="form-control" value="<?php echo isset($userDetails['name']) ? $userDetails['name'] : ''; ?>">
+
                 </div>
                 
                 <div class="form-group">
                     <label for="address"><strong>Address</strong></label>
-                    <input type="text" name="address" class="form-control">
+                    <input type="text" name="address" class="form-control" value="<?php echo isset($userDetails['address']) ? $userDetails['address'] : ''; ?>">
+
                 </div>
                 <div class="form-group">
                     <label for="work_description"><strong>Work Description</strong></label>
@@ -129,25 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 </div>
 
-                <div id="map-section">
-                    <h4><strong>Location on map</strong></h4>
-                    <div id="map"></div>
-                    <br>
-                    <!-- Latitude, Longitude, and Address fields hidden by default -->
-                    <div class="form-group" style="display: none;">
-                        <label for="lat"><strong>Latitude</strong></label>
-                        <input type="text" id="lat" name="lat" class="form-control">
-                    </div>
-                    <div class="form-group" style="display: none;">
-                        <label for="lng"><strong>Longitude</strong></label>
-                        <input type="text" id="lng" name="lng" class="form-control">
-                    </div>
-                    <div class="form-group" style="display: none;">
-                        <label for="map_address"><strong>Address</strong></label>
-                        <input type="text" id="map_address" name="map_address" class="form-control">
-                    </div>
-                </div>
-
+                
                 <div class="form-group">
                     <label for="image"><strong>Image</strong></label>
                     <div class="d-flex">
@@ -188,7 +190,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 </div>
 
-               
+                <div id="map-section">
+                    <h4><strong>Pin Location on map</strong></h4>
+                    <div id="map"></div>
+                    <br>
+                    <!-- Latitude, Longitude, and Address fields hidden by default -->
+                    <div class="form-group" style="display: none;">
+                        <label for="lat"><strong>Latitude</strong></label>
+                        <input type="text" id="lat" name="lat" class="form-control">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="lng"><strong>Longitude</strong></label>
+                        <input type="text" id="lng" name="lng" class="form-control">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="map_address"><strong>Address</strong></label>
+                        <input type="text" id="map_address" name="map_address" class="form-control">
+                    </div>
+                </div>
+
 
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-success btn-lg rounded-pill"><strong>Post Job</strong></button>

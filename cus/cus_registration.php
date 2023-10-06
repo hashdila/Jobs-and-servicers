@@ -1,17 +1,21 @@
 <?php
-session_start(); // Added session_start to use session variables.
+session_start();
 
-// Database connection
 
 include '../database_con.php';
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $nic = $_POST['nic'];
-    $address = $_POST['address'];
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $username = $_POST["username"];
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $address = $_POST["address"];
+   
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+
+    // Set the status (you can change the value according to your requirements)
+    $status = "Active now";
 
     $profile_image = isset($_FILES["profile_image"]["name"]) ? $_FILES["profile_image"]["name"] : '';
     $target_dir = "../profile images/";
@@ -19,27 +23,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_dir . $profile_image);
     }
 
-    // Generate a random unique ID for the user
-    $unique_id = rand(time(), 100000000);
+    // Generate a random ID for the user
+    $ran_id = rand(time(), 100000000);
 
-    // Set the status (you can change the value according to your requirements)
-    $status = "Active now";
+    // Update your SQL statement to include the unique_id and status fields
+    $sql = "INSERT INTO users(unique_id, username, name, email, address, password, profile_image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    // Updated SQL query to include unique_id and status
-    $sql = "INSERT INTO users (unique_id, name, email, nic, address, username, password, profile_image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // Update the execute() array to include the random ID and status
     $stmt = $pdo->prepare($sql);
+    $stmt->execute([$ran_id, $username, $name, $email, $address, $password, $target_dir . $profile_image, $status]);
 
-    // Updated bind_param to include unique_id and status
-    $stmt->execute([ $unique_id, $name, $email, $nic, $address, $username, $password, $profile_image, $status]);
+    
+    
 
-    echo "User registered successfully!";
 
-    // Log the user in
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
+    $_SESSION['registration_success'] = true;
 
-    // Redirect to tec_login.php
-    header('Location: cus_login.php');
+    echo "User registered successfully!";
+    header('Location: cus_registration.php');
+
+
+
+
     exit;
 }
 ?>
@@ -48,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- I will not be repeating the entire HTML part since it is largely unchanged. Just provide the changes below. -->
 
 <form action="cus_registration.php" method="post" enctype="multipart/form-data">
-    <!-- ... your form fields and design ... -->
+    
 </form>
 
 <!DOCTYPE html>
@@ -86,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            /* align-items: center; */
+           
         }
 
         .profile-image-container {
@@ -165,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <input type="file" name="profile_image" id="profile-image-input" class="d-none" onchange="showPreview(event)">
                 </div>
-                <!-- ... All your form fields ... -->
+                
                 <div class="mb-3">
                     <label for="name" class="form-label text-white fs-3">Name</label>
                     <input type="text" class="form-control form-control-lg" id="name" name="name" required>
@@ -204,7 +211,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </video>
     </div>
 
+
+
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                User registered successfully!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="redirectToLogin()">OK</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function redirectToLogin() {
+            location.href = 'cus_login.php';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // If registration was successful, show the modal and unset the session variable
+            <?php if(isset($_SESSION['registration_success']) && $_SESSION['registration_success']): ?>
+            var myModal = new bootstrap.Modal(document.getElementById('successModal'), {});
+            myModal.show();
+            <?php unset($_SESSION['registration_success']); ?>
+            <?php endif; ?>
+        });
+    </script>
 </body>
 
 </html>

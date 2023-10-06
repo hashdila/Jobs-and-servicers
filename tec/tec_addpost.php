@@ -8,6 +8,19 @@
 
     include '../database_con.php';
 
+    $userDetails = [];
+
+    if (isset($_SESSION["id"])) {
+        $tec_id = $_SESSION["id"];
+        $sql = "SELECT name, address FROM users WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$tec_id]);
+    
+        $userDetails = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"];
     $job_category = $_POST["job_category"];
@@ -32,13 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     move_uploaded_file($_FILES["image2"]["tmp_name"], $target_dir . $image2);
     move_uploaded_file($_FILES["image3"]["tmp_name"], $target_dir . $image3);
 
-    // $sql = "INSERT INTO locations (lat, lng, address) VALUES (?, ?, ?)";
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->execute([$lat, $lng, $mapAddress]);
-
-    // $sql = "INSERT INTO tec_posts (name, age, address, work_description, image1, image2, image3, location, phone_number, tec_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->execute([$name, $age, $address, $work_description, $target_dir . $image1, $target_dir . $image2, $target_dir . $image3, $location, $phone_number, $tec_id]);
 
     $sql = "INSERT INTO tec_posts (name, job_category, age, physical_address, work_description, image1, image2, image3, location, phone_number, tec_id, lat, lng, map_address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
@@ -54,7 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Job Post Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
     <style>
         .image-preview img {
             max-width: 200px;
@@ -85,29 +92,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         /* Apply custom fonts */
         body {
             font-family: Arial, sans-serif;
+            background-image: url('../application/tecaddhome.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
         }
+        
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <?php include 'tec_dashbord.php'; ?>
 
-<div class="container">
+
+
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-        <h3 class="hed text-center display-4"><strong>Post a Job</strong></h3>
-        <hr w-25>
+            <h3 class="text-center display-4"><strong>Post a Job</strong></h3>
+            <hr class="mx-auto" style="width: 25%;">
 
             <form action="tec_addpost.php" method="post" enctype="multipart/form-data">
                 <!-- Your form fields here... -->
                 <div class="form-group">
                     <label for="name"><strong>Name</strong></label>
-                    <input type="text" name="name" class="form-control">
+                    <input type="text" name="name" class="form-control" value="<?php echo isset($userDetails['name']) ? $userDetails['name'] : ''; ?>">
+
                 </div>
                 
                 <div class="form-group">
                     <label for="address"><strong>Address</strong></label>
-                    <input type="text" name="address" class="form-control">
+                    <input type="text" name="address" class="form-control" value="<?php echo isset($userDetails['address']) ? $userDetails['address'] : ''; ?>">
+
                 </div>
                 <div class="form-group">
                     <label for="work_description"><strong>Work Description</strong></label>
@@ -128,24 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 </div>
 
-                <div id="map-section">
-                    <h4><strong>Location on map</strong></h4>
-                    <div id="map"></div>
-                    <br>
-                    <!-- Latitude, Longitude, and Address fields hidden by default -->
-                    <div class="form-group" style="display: none;">
-                        <label for="lat"><strong>Latitude</strong></label>
-                        <input type="text" id="lat" name="lat" class="form-control">
-                    </div>
-                    <div class="form-group" style="display: none;">
-                        <label for="lng"><strong>Longitude</strong></label>
-                        <input type="text" id="lng" name="lng" class="form-control">
-                    </div>
-                    <div class="form-group" style="display: none;">
-                        <label for="map_address"><strong>Address</strong></label>
-                        <input type="text" id="map_address" name="map_address" class="form-control">
-                    </div>
-                </div>
+                
 
                 <div class="form-group">
                     <label for="image"><strong>Image</strong></label>
@@ -191,9 +190,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <!-- Add more options as needed -->
                     </select>
                 </div>
+                <div id="map-section">
+                    <h4><strong>pin the corect location</strong></h4>
+                    <div id="map"></div>
+                    <br>
+                    <!-- Latitude, Longitude, and Address fields hidden by default -->
+                    <div class="form-group" style="display: none;">
+                        <label for="lat"><strong>Latitude</strong></label>
+                        <input type="text" id="lat" name="lat" class="form-control">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="lng"><strong>Longitude</strong></label>
+                        <input type="text" id="lng" name="lng" class="form-control">
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        <label for="map_address"><strong>Address</strong></label>
+                        <input type="text" id="map_address" name="map_address" class="form-control">
+                    </div>
+                </div>
                 
 
-                <button type="submit" class="btn btn-primary">Post Job</button>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary btn-lg ">Post Job</button>
+                </div>
+                <br>
+
             </form>
         </div>
     </div>
@@ -269,6 +290,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 </script>
+
+<script>
+    function previewImage(input, target) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            document.getElementById(target).setAttribute('src', e.target.result);
+            document.getElementById(target).style.display = 'block';
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>
+
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz6hD1YTyC3OSA2XoY4xnFulMVkOx2bDE&callback=initMap"></script>
 </body>

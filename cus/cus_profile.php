@@ -50,12 +50,14 @@ $jobs = $stmt->fetchAll();
     <div class="p-4 border shadow-sm rounded bg-light position-relative">
         <h2 class="mb-4 display-4"><span class="me-2"></span>My Profile</h2>
         <div class="d-flex align-items-start mb-5">
-            <img src="<?php echo htmlspecialchars($userDetails['profile_image']); ?>" alt="../cus/Profile Image" class="rounded-circle border border-secondary p-1" style="width: 150px; height: 150px;">
+        <img src="<?php echo htmlspecialchars($userDetails['profile_image']); ?>" alt="../cus/Profile Image" class="rounded-circle border border-secondary p-1" style="width: 150px; height: 150px;">
+
+
             <div class="ms-4">
                 <p class="mb-2 fs-2"><span class="fw-bold me-2"></span> <?php echo htmlspecialchars($userDetails['name']); ?></p>
                 <p class="mb-2 fs-5"><span class="fw-bold me-2">&#x2709;</span>Email: <?php echo htmlspecialchars($userDetails['email']); ?></p>
                 <p class="mb-2 fs-5"><span class="fw-bold me-2">&#x1F3E0;</span>Address: <?php echo htmlspecialchars($userDetails['address']); ?></p>
-                <p class="mb-2 fs-5"><span class="fw-bold me-2">&#x1F527;</span>NIC: <?php echo htmlspecialchars($userDetails['NIC']); ?></p>
+
             </div>
         </div>
         <a href="edit_profile.php" class="btn btn-outline-secondary position-absolute top-0 end-0 m-3"><i class="bi bi-pencil"></i></a>

@@ -28,11 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("location: cus_home.php");
     } else {
         // Display an error message if password is not valid
-        echo "The username or password was incorrect.";
+        $error = "The username or password was incorrect.";
     }
 }
 
 ?>
+
+<?php if (!empty($error)): ?>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        });
+    </script>
+<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +110,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
     </style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        
 </head>
 
 <body>
@@ -120,10 +135,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="username" class="form-label text-white fs-3">Username</label>
                     <input type="text" class="form-control form-control-lg" id="username" name="username" required>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     <label for="password" class="form-label text-white fs-3">Password</label>
                     <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+                    <span class="text-white fs-6" style="cursor: pointer;" onclick="togglePasswordVisibility()">Show Password</span>
                 </div>
+
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn btn-primary btn-lg">Login</button>
                 </div>
@@ -133,10 +150,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+
+
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Login Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    The username or password was incorrect.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="location.tec_login.php">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
     function closePage() {
         window.location.href = '../home.php'; // change 'home.php' to your desired URL
     }
+</script>
+<script>
+    function togglePasswordVisibility() {
+    let passwordField = document.getElementById('password');
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+    } else {
+        passwordField.type = 'password';
+    }
+}
+
 </script>
 
     <!-- Bootstrap 5 JS bundle -->

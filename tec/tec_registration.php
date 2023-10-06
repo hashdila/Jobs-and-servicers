@@ -4,6 +4,8 @@ session_start();
 
 include '../database_con.php';
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $name = $_POST["name"];
@@ -17,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $profile_image = $_FILES["profile_image"]["name"];
     $target_dir = "../profile images/";
-    move_uploaded_file($_FILES["../profile_image"]["tmp_name"], $target_dir . $profile_image);
+    move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_dir . $profile_image);
 
     // Generate a random ID for the user
     $ran_id = rand(time(), 100000000);
@@ -32,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     
 
-    // Log the user in
+
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
     $_SESSION['registration_success'] = true;
@@ -63,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             height: 100%;
         }
 
-        /* Desktop View */
+
         #splitScreenContainer {
             display: flex;
             height: 100vh;
@@ -79,13 +81,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         #registrationPart {
             width: 60%;
             height: 100%;
-            overflow-y: auto; /* allows scrolling */
+            overflow-y: auto; 
             padding: 5% 10%;
             background: linear-gradient(120deg, #2c3e50 0%, #34495e 100%);
             display: flex;
             flex-direction: column;
             justify-content: flex-start; 
-            /* align-items: center; */
+
         }
 
         .profile-image-container {
@@ -130,9 +132,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 padding: 5% 10%;
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-start; /* align content to the start */
+                justify-content: flex-start; 
                 align-items: center;
-                background: rgba(44, 62, 80, 0.8); /* Slightly transparent to see the video behind */
+                background: rgba(44, 62, 80, 0.8);
             }
         }
     </style>

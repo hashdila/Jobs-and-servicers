@@ -3,11 +3,15 @@
 <head>
     <title>Display Locations on Google Maps</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <style>
         #map {
             height: 500px;
             width: 100%;
         }
+        
+
     </style>
 </head>
 <body>
@@ -62,6 +66,12 @@ $locations = $stmt->fetchAll();
         }
     }
 </script>
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.container').style.opacity = '1';
+});
+
+</script> -->
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBz6hD1YTyC3OSA2XoY4xnFulMVkOx2bDE&callback=initMap">
 </script>
 </body>

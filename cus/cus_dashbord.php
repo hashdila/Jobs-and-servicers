@@ -61,9 +61,9 @@ $username = $_SESSION["username"];
 <nav class="navbar navbar-expand  bg-light-green">
     <div class="container">
         <!-- Logo -->
-        <!-- <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="#">
             <img src="../images/logo.png" alt="Logo" width="50" height="50" class="d-inline-block align-text-top">
-        </a> -->
+        </a>
 
         <!-- Nav items and login button -->
         <ul class="navbar-nav">

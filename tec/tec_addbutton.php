@@ -24,12 +24,14 @@
         .animated-btn:hover {
             transform: scale(1.1); /* The button will enlarge to 110% of its original size when hovered */
         }
+
+        
     </style>
 </head>
 
 <body>
 
-<div class="button-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 20vh;">
+<div class="button-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 20vh; background:transparent;">
     <!-- First Button -->
     <a href="tec_addpost.php" class="animated-btn" style="margin-bottom: 20px; display: block; text-align: center; background-image: url('../application/add1.png'); width: 100px; height: 100px; background-size: contain; background-repeat: no-repeat; background-position: center; border: none; font-size: 50px; padding: 20px 40px; border-radius: 10px; text-decoration: none;">
     </a>
