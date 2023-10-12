@@ -99,12 +99,50 @@ $username = $_SESSION["username"];
             
             <ul>
                 <div class="text-center mt-4">
-                    <a href="../logout.php" class="btn btn-danger">Logout</a>
+                    <a href="#" id="logout-button"  class="btn btn-danger">Logout</a>
                 </div>
             </ul>    
         </div>
     </div>
 </nav>
 
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to log out?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="../logout.php" class="btn btn-primary">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+    // Function to show the logout confirmation modal
+    function showLogoutModal() {
+        $('#logoutModal').modal('show');
+    }
 
+    // Attach an event listener to the Logout button
+    document.getElementById('logout-button').addEventListener('click', function () {
+        showLogoutModal();
+    });
+
+    // Function to handle the logout action
+    function logout() {
+        // Redirect to the logout page (../logout.php in your case)
+        window.location.href = '../logout.php';
+    }
+
+    // Attach an event listener to the "Logout" button inside the modal
+    document.getElementById('modal-logout-button').addEventListener('click', function () {
+        logout();
+    });
+</script>

@@ -86,12 +86,56 @@ $username = $_SESSION["username"];
                 <img src="<?php echo isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image']) ? $_SESSION['profile_image'] : '../profile images/profile.png'; ?>"
                  alt="Profile Image" class="circle" width="50" height="50"></a>
             </li>
-        </ul>
-        <div class="text-center mt-4">
-            <a href="../logout.php" class="btn btn-danger">Logout</a>
-        </div>   
+            </ul>
+                <div class="text-center mt-4">
+                    <button id="logout-button" class="btn btn-danger">Logout</button>
+                </div>
     </div>
 </nav>
+
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to log out?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="../logout.php" class="btn btn-primary">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Function to show the logout confirmation modal
+    function showLogoutModal() {
+        $('#logoutModal').modal('show');
+    }
+
+    // Attach an event listener to the new Logout button
+    document.getElementById('logout-button').addEventListener('click', function () {
+        showLogoutModal();
+    });
+
+    // Function to handle the logout action
+    function logout() {
+        // Redirect to the logout page (../logout.php in your case)
+        window.location.href = '../logout.php';
+    }
+
+    // Attach an event listener to the "Logout" button inside the modal
+    document.getElementById('modal-logout-button').addEventListener('click', function () {
+        logout();
+    });
+</script>
 
 
 

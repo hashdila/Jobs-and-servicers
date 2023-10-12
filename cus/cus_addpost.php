@@ -128,8 +128,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label for="work_description"><strong>Work Description</strong></label>
-                    <textarea name="text" class="form-control"></textarea>
+                    <textarea name="work_description" class="form-control"></textarea>
                 </div>
+
                 <div class="form-group">
                     <label for="price"><strong>price</strong></label>
                     <input type="text" name="price" class="form-control">

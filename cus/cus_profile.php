@@ -97,7 +97,7 @@ $jobs = $stmt->fetchAll();
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title display-6"><?php echo htmlspecialchars($job['name']); ?></h5> <!-- Using display-6 for larger font -->
-                            <p class="card-text fs-5"><i class="bi bi-person-fill me-2"></i><strong>Age:</strong> <?php echo htmlspecialchars($job['age']); ?></p> <!-- Using fs-5 for a larger font and added an icon for age -->
+                            
                             <p class="card-text fs-5"><i class="bi bi-house-door-fill me-2"></i><strong>Address:</strong> <?php echo htmlspecialchars($job['address']); ?></p> <!-- Using fs-5 and added an icon for address -->
                             <p class="card-text fs-5"><i class="bi bi-briefcase-fill me-2"></i><strong>Work Description:</strong> <?php echo htmlspecialchars($job['work_description']); ?></p> <!-- Using fs-5 and added an icon for work -->
                             <p class="card-text fs-5"><i class="bi bi-geo-fill me-2"></i><strong>Location:</strong> <?php echo htmlspecialchars($job['location']); ?></p> <!-- Using fs-5 and added an icon for location -->
@@ -112,9 +112,10 @@ $jobs = $stmt->fetchAll();
                         <!-- Trigger button for the modal -->
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">Delete</button>
 
+
                         <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                                <div class="modal-content">
+                                <div class="modal-content">        
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="deleteConfirmModalLabel">Confirm Delete</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -148,7 +149,7 @@ $jobs = $stmt->fetchAll();
 
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

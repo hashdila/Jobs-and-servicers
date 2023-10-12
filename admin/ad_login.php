@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+// Check if the user is already logged in as admin
+if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+    // Redirect to admin home page if already logged in
+    header('Location: ad_home.php');
+    exit;
+}
+
 if (isset($_POST['username']) && isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -12,14 +19,15 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     if ($username === $admin_username && $password === $admin_password) {
         // Successful login
         $_SESSION['admin_logged_in'] = true;
-        header('Location: ad_home.php');
-        exit;
+        $success_message = 'Login successful. Redirecting to admin home page...';
+        header('Refresh: 2; URL=ad_home.php'); // Redirect after 2 seconds
     } else {
         // Failed login
         $error_message = 'Invalid Username or Password!';
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,6 +76,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
             </div>
         </form>
+        <?php if (isset($success_message)): ?>
+            <div class="alert alert-success"><?= $success_message ?></div>
+        <?php endif; ?>
     </div>
     <!-- Bootstrap 5 JS bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
