@@ -43,12 +43,41 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $user['address'] ?></td>
                     <td>
                         <a href="edit_account.php?id=<?= $user['id'] ?>" class="btn btn-warning">Edit</a>
-                        <a href="delete_account.php?id=<?= $user['id'] ?>" class="btn btn-danger">Delete</a>
+                        <a href="#" class="btn btn-danger deleteUserButton" data-bs-toggle="modal" data-bs-target="#deleteUserModal" data-user-id="<?= $user['id'] ?>">Delete</a>
+
+                       
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteUserModalLabel">Delete Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this user?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="#" id="deleteUserLink" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+    $('.deleteUserButton').click(function() {
+        var userId = $(this).data('user-id');
+        var deleteUserLink = $('#deleteUserLink');
+        deleteUserLink.attr('href', 'delete_account.php?id=' + userId);
+    });
+});
+</script>
+
 </body>
 </html>

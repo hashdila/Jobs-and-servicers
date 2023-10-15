@@ -9,7 +9,7 @@
 
     <style>
     body {
-        background-image: url('../application/bactec.jpg'); /* Replace with the path to your image */
+        /* background-image: url('../application/bactec.jpg'); Replace with the path to your image */
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed; /* This makes sure your background image doesn't scroll */

@@ -49,12 +49,42 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><img src="<?= $post['image3'] ?>" alt="Image 3" width="50"></td>
                     <td>
                         <a href="cusedit_post.php?job_id=<?= $post['job_id'] ?>" class="btn btn-warning text-white">Edit</a>
-                        <a href="cusdelete_post.php?job_id=<?= $post['job_id'] ?>" class="btn btn-danger text-white">Delete</a>
+                        <a href="#" class="btn btn-danger text-white deletePostButton" data-bs-toggle="modal" data-bs-target="#deletePostModal" data-post-id="<?= $post['job_id'] ?>">Delete</a>
+
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+
+    <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePostModalLabel" style="color: black;">Delete Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color: black;">Are you sure you want to delete this post?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="#" id="deletePostLink" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('.deletePostButton').click(function() {
+        var postId = $(this).data('post-id');
+        var deletePostLink = $('#deletePostLink');
+        deletePostLink.attr('href', 'cusdelete_post.php?job_id=' + postId);
+    });
+});
+</script>
+
 </body>
 </html>

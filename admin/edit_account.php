@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateQuery = 'UPDATE users SET name = :name, email = :email, address = :address WHERE id = :id';
     $updateStmt = $pdo->prepare($updateQuery);
     $updateStmt->execute(['name' => $name, 'email' => $email, 'address' => $address, 'id' => $id]);
-
+    $_SESSION['update_success'] = true;
     header('Location: account_manage.php');
 }
 ?>
@@ -51,5 +51,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="user_management.php" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Update Success</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Your update was successful.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php if (isset($_SESSION['update_success']) && $_SESSION['update_success']) : ?>
+    <script>
+        $(document).ready(function () {
+            $('#successModal').modal('show');
+        });
+    </script>
+    <?php unset($_SESSION['update_success']); // Reset the flag ?>
+<?php endif; ?>
+
 </body>
 </html>

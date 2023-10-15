@@ -34,7 +34,7 @@
             <ul class="navbar-nav ms-auto"> 
                 <li class="nav-item">
                     <div class="text-center mt-4">
-                        <a href="../logout.php" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    <a href="javascript:void(0)" class="btn btn-danger logout-button" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -42,7 +42,32 @@
     </div>
 </nav>
 
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Logout Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to log out?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a href="../logout.php" class="btn btn-primary">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+<script>
+$(document).ready(function(){
+    $(".logout-button").click(function(){
+        $("#logoutModal").modal();
+    });
+});
+</script>
 
   <!-- Include Bootstrap 5 JS from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

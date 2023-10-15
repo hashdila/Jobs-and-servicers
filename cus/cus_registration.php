@@ -68,41 +68,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
     
     <style>
-        body, html {
-            height: 100%;
-        }
-
-        #splitScreenContainer {
-            display: flex;
-            height: 100vh;
-        }
-
-        #bgVideo {
-            width: 40%;
-            height: 100%;
-            object-fit: cover;
-            border-right: 5px solid #1a1a1a;
-        }
-
-        #registrationPart {
-            width: 60%;
-            height: 100%;
-            overflow-y: auto;
-            padding: 5% 10%;
-            background: linear-gradient(120deg, #2c3e50 0%, #34495e 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-           
-        }
+        
 
         .profile-image-container {
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             margin: 15px auto;
             overflow: hidden;
-            background-color: #000;
+            background-color: gray;
         }
 
         .camera-icon {
@@ -121,25 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 justify-content: center;
             }
 
-            #bgVideo {
-                width: 100%;
-                height: 100vh;
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: -1;
-            }
-
-            #registrationPart {
-                width: 90%;
-                height: 100vh;
-                padding: 5% 10%;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                background: rgba(44, 62, 80, 0.8);
-            }
+            
         }
     </style>
     <script>
@@ -156,60 +112,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div id="splitScreenContainer">
-
-    <div class="position-absolute top-0 start-0 p-3">
+<div class="position-absolute top-0 start-0 p-3">
         <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
     </div>
-    
-        <div class="container" id="registrationPart">
-            <h5 class="modal-title text-white mb-4 display-2">Customer Registration</h5>
-            <form action="cus_registration.php" method="post"  enctype="multipart/form-data">
-            <div class="mb-1  text-center">
-                    <div class="profile-image-container position-relative">
-                        <img id="profile-image-preview" src="#" class="w-100 h-100" />
-                        <div class="camera-icon position-absolute top-50 start-50 translate-middle text-white" onclick="document.getElementById('profile-image-input').click();">📷</div>
-                    </div>
-                    <input type="file" name="profile_image" id="profile-image-input" class="d-none" onchange="showPreview(event)">
-                </div>
-                
-                <div class="mb-3">
-                    <label for="name" class="form-label text-white fs-3">Name</label>
-                    <input type="text" class="form-control form-control-lg" id="name" name="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label text-white fs-3">Email</label>
-                    <input type="email" class="form-control form-control-lg" id="email" name="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="nic" class="form-label text-white fs-3">NIC</label>
-                    <input type="text" class="form-control form-control-lg" id="nic" name="nic" required>
-                </div>
-                <div class="mb-3">
-                    <label for="address" class="form-label text-white fs-3">Address</label>
-                    <input type="text" class="form-control form-control-lg" id="address" name="address" required>
-                </div>
-                <div class="mb-3">
-                    <label for="username" class="form-label text-white fs-3">Username</label>
-                    <input type="text" class="form-control form-control-lg" id="username" name="username" required>
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label text-white fs-3">Password</label>
-                    <input type="password" class="form-control form-control-lg" id="password" name="password" required>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
-                </div>
-                <div class="mt-4">
-                    <p class="text-white fs-4">Already have an account? <a href="cus_login.php" class="text-warning">Login</a></p>
-                </div>
-            </form>
-        </div>
 
-        <video autoplay muted loop id="bgVideo">
-            <source src="../application/logvideo.mp4" type="video/mp4">
-        </video>
+    
+    
+    <div class="container" >
+    <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-md-6 border p-4 shadow">
+    <div id="registrationPart">
+    <h6 class="modal-title text-black display-2 d-flex justify-content-center align-items-center" style="font-size: 50px;">Sign up</h6>
+        
+        <form action="cus_registration.php" method="post" enctype="multipart/form-data">
+            <div class="mb-1 text-center">
+                <div class="profile-image-container position-relative">
+                    <img id="profile-image-preview" src="#" class="w-100 h-100" />
+                    <div class="camera-icon position-absolute top-50 start-50 translate-middle text-white"
+                        onclick="document.getElementById('profile-image-input').click();">📷</div>
+                </div>
+                <input type="file" name="profile_image" id="profile-image-input" class="d-none" onchange="showPreview(event)">
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label text-back fs-5">Name</label>
+                <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label text-back fs-5">Email</label>
+                <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="nic" class="form-label text-back fs-5">NIC</label>
+                <input type="text" class="form-control form-control-lg" id="nic" name="nic" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label text-back fs-5">Address</label>
+                <input type="text" class="form-control form-control-lg" id="address" name="address" required>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label text-back fs-5">Username</label>
+                <input type="text" class="form-control form-control-lg" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label text-back fs-5">Password</label>
+                <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg">Register</button>
+            </div>
+            <div class="mt-4">
+                <p class="text-back fs-4">Already have an account? <a href="cus_login.php" class="text-warning">Login</a></p>
+            </div>
+        </form>
+        </div>
+</div>
+        <div class="col-md-6">
+            <div class="photo d-flex justify-content-center align-items-center">
+                <img src="../application/register.png" alt="Your Image" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: cover; object-position: left;">
+            </div>
+        </div>
     </div>
+
+
 
 
 

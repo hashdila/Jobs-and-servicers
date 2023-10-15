@@ -55,61 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 
-    <style>
-        body, html {
-            height: 100%;
-        }
 
-        /* Desktop View */
-        #splitScreenContainer {
-            display: flex;
-            height: 100vh;
-        }
-
-        #bgVideo {
-            width: 40%;
-            height: 100%;
-            object-fit: cover;
-            border-right: 5px solid #1a1a1a;
-        }
-
-        #loginPart {
-            width: 60%;
-            padding: 5% 10%;
-            background: linear-gradient(120deg, #2c3e50 0%, #34495e 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        @media (max-width: 767px) {
-    #splitScreenContainer {
-        flex-direction: column-reverse;
-        align-items: center;
-        justify-content: center; /* This ensures content is centered vertically on mobile */
-    }
-
-    #bgVideo {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        border-right: none;
-    }
-
-    #loginPart {
-        width: 95%;
-        padding: 10%;
-        /* Since you want it centered, these flex properties help in achieving that */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
-    </style>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -118,39 +64,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div id="splitScreenContainer">
-        <!-- Background Video -->
-        <video autoplay muted loop id="bgVideo">
-            <source src="../application/logvideo.mp4" type="video/mp4">
-            
-        </video>
+    
         
 <button id="closePageBtn" class="btn btn-danger position-fixed top-0 end-0 m-3" onclick="closePage()">X</button>
 
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
         <!-- Login Part -->
-        <div id="loginPart">
-            <h5 class="modal-title text-white mb-4 display-2">Login</h5>
-            <form action="cus_login.php" method="post">
-                <div class="mb-3">
-                    <label for="username" class="form-label text-white fs-3">Username</label>
-                    <input type="text" class="form-control form-control-lg" id="username" name="username" required>
-                </div>
-                <div class="mb-3 position-relative">
-                    <label for="password" class="form-label text-white fs-3">Password</label>
-                    <input type="password" class="form-control form-control-lg" id="password" name="password" required>
-                    <span class="text-white fs-6" style="cursor: pointer;" onclick="togglePasswordVisibility()">Show Password</span>
-                </div>
+        <div class="col-md-6 border p-4 shadow">
+            <div id="loginPart">
+                <h5 class="modal-title text-black mb-4 display-2">Customer Login</h5>
+                <form action="cus_login.php" method="post">
+                    <div class="mb-3">
+                        <label for="username" class="form-label text-black fs-4">Username</label>
+                        <input type="text" class="form-control form-control-lg" id="username" name="username" required>
+                    </div>
+                    <div class="mb-3 position-relative">
+                        <label for="password" class="form-label text-black fs-4">Password</label>
+                        <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+                        <span class="text-black fs-6" style="cursor: pointer;" onclick="togglePasswordVisibility()">Show Password</span>
+                    </div>
 
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-primary btn-lg">Login</button>
-                </div>
-                <div class="mt-4">
-                    <p class="text-white fs-4">Don't have an account? <a href="cus_registration.php" class="text-warning">Sign up</a></p>
-                </div>
-            </form>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-black fs-4">Don't have an account? <a href="cus_registration.php" class="text-warning">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Image Part -->
+        <div class="col-md-6 d-none d-sm-block">
+            <div class="photo d-flex justify-content-center align-items-center">
+                <img src="../application/login.jpg" alt="Your Image" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: cover; object-position: left;">
+            </div>
         </div>
     </div>
-
+</div>
 
     <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog">
