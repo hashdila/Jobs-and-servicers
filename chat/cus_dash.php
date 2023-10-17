@@ -58,7 +58,7 @@ $username = $_SESSION["username"];
 
 
 
-<nav class="navbar navbar-expand  bg-light-green">
+<nav class="navbar navbar-expand  bg-light">
     <div class="container">
         <!-- Logo -->
         <!-- <a class="navbar-brand" href="#">

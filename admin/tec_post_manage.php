@@ -17,45 +17,45 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <?php include 'ad_nav.php'; ?>
 
-<body class=" text-white">
-    <div class="container mt-5">
-        <h1 class="text-white">Tec Post Management</h1>
-        <table class="table  ">
-            <thead>
-                <tr>
-                    <th>Job ID</th>
-                    <th>Name</th>
-                    <th>Job Category</th>
-                    <th>Work description</th>
-                    <th>Location</th>
-                    <th>image1</th>
-                    <th>image2</th>
-                    <th>image3</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($posts as $post): ?>
-                <tr>
-                    <td><?= $post['job_id'] ?></td>
-                    <td><?= $post['name'] ?></td>
-                    <td><?= $post['job_category'] ?></td>
-                    <td><?= $post['work_description'] ?></td>
-                    <td><?= $post['physical_address'] ?></td>
-                    <td><img src="<?= $post['image1'] ?>" alt="Image 1" width="50"></td>
-                    <td><img src="<?= $post['image2'] ?>" alt="Image 2" width="50"></td>
-                    <td><img src="<?= $post['image3'] ?>" alt="Image 3" width="50"></td>
-                    <td>
-                        <a href="tecedit_post.php?job_id=<?= $post['job_id'] ?>" class="btn btn-warning text-white">Edit</a>
-                        <a href="#" class="btn btn-danger deletePostButton" data-bs-toggle="modal" data-bs-target="#deletePostModal" data-post-id="<?= $post['job_id'] ?>">Delete</a>
+<div class="container mt-5">
+    <h1 class="">Tec Post Management</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Job ID</th>
+                <th>Name</th>
+                <th>Job Category</th>
+                <th>Work Description</th>
+                <th>Location</th>
+                <th>Image 1</th>
+                <th>Image 2</th>
+                <th>Image 3</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($posts as $post): ?>
+            <tr>
+                <td><?= $post['job_id'] ?></td>
+                <td><?= $post['name'] ?></td>
+                <td><?= $post['job_category'] ?></td>
+                <td><?= $post['work_description'] ?></td>
+                <td><?= $post['physical_address'] ?></td>
+                <td><img src="<?= $post['image1'] ?>" alt="Image 1" width="50"></td>
+                <td><img src="<?= $post['image2'] ?>" alt="Image 2" width="50"></td>
+                <td><img src="<?= $post['image3'] ?>" alt="Image 3" width="50"></td>
+                <td>
+                    <a href="tecedit_post.php?job_id=<?= $post['job_id'] ?>" class="btn btn-warning text-white">Edit</a>
+                    <a href="#" class="btn btn-danger text-white deletePostButton" data-bs-toggle="modal" data-bs-target="#deletePostModal" data-job-id="<?= $post['job_id'] ?>">Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+<!-- Delete Post Modal -->
+<div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -67,18 +67,19 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <a href="#" id="deletePostLink" class="btn btn-danger">Delete</a>
+                <a href="#" id="deletePostLink" class="btn btn-danger text-white">Delete</a>
             </div>
         </div>
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function(){
     $('.deletePostButton').click(function() {
-        var postId = $(this).data('post-id');
+        var jobId = $(this).data('job-id');
         var deletePostLink = $('#deletePostLink');
-        deletePostLink.attr('href', 'tecpost_delete.php?job_id=' + postId);
+        deletePostLink.attr('href', 'tecpost_delete.php?job_id=' + jobId);
     });
 });
 </script>

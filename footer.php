@@ -21,7 +21,7 @@
                 <ul class="list-unstyled">
                     <li>Address: Bauddaloka mawatha, Kurunegala, Sri Lanka</li>
                     <li>Phone: +037-5-100-100</li>
-                    <li>Email: info@example.com</li>
+                    <li>Email: j&sinfo@example.com</li>
                 </ul>
             </div>
         </div>
