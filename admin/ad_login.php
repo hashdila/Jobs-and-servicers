@@ -13,8 +13,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $password = $_POST['password'];
 
     // Hardcoded username and password
-    $admin_username = 'ad';
-    $admin_password = 'ad';
+    $admin_username = 'admin';
+    $admin_password = 'admin';
 
     if ($username === $admin_username && $password === $admin_password) {
         // Successful login
