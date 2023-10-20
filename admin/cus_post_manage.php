@@ -38,7 +38,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tr>
                 <td><?= $post['job_id'] ?></td>
                 <td><?= $post['name'] ?></td>
-                <td><?= $post['job_category'] ?></td>
+                <td><?= $post['need_t'] ?></td>
                 <td><?= $post['work_description'] ?></td>
                 <td><?= $post['location'] ?></td>
                 <td><img src="<?= $post['image1'] ?>" alt="Image 1" width="50"></td>
