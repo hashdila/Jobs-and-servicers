@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <h3 class="text-center display-4"><strong>Post a Job</strong></h3>
+            <h3 class="text-center display-4"><strong>Post a advertisment</strong></h3>
             <hr class="mx-auto" style="width: 25%;">
 
             <form action="tec_addpost.php" method="post" enctype="multipart/form-data">
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 </div>
                 <div class="form-group">
-                    <label for="work_description"><strong>Work Description</strong></label>
+                    <label for="work_description"><strong>Description</strong></label>
                     <textarea name="work_description" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
@@ -187,6 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Electrician"><strong>Electrician</strong></option>
                         <option value="Cleaner"><strong>Cleaner</strong></option>
                         <option value="Driver"><strong>Driver</strong></option>
+                        <option value="Mason"><strong>Mason</strong></option>
                         <!-- Add more options as needed -->
                     </select>
                 </div>
